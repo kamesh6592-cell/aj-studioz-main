@@ -108,10 +108,10 @@ const NavbarHero: React.FC<NavbarHeroProps> = ({
 
           <div className="flex items-center gap-3">
             <div className="hidden lg:flex items-center gap-3">
-              <a href="#" className="text-foreground hover:text-muted-foreground cursor-pointer py-2 px-4 text-sm capitalize font-medium transition-colors rounded-xl">Login</a>
-              <button className="bg-foreground hover:bg-muted-foreground text-background py-2.5 px-5 text-sm rounded-xl capitalize font-medium transition-colors flex items-center gap-2">
+              <a href="/signin" className="text-foreground hover:text-muted-foreground cursor-pointer py-2 px-4 text-sm capitalize font-medium transition-colors rounded-xl">Login</a>
+              <a href="/signup" className="bg-foreground hover:bg-muted-foreground text-background py-2.5 px-5 text-sm rounded-xl capitalize font-medium transition-colors flex items-center gap-2">
                 Get Started<ArrowRight className="h-4 w-4" />
-              </button>
+              </a>
             </div>
             <ToggleTheme />
             <div className="lg:hidden relative">
@@ -131,10 +131,10 @@ const NavbarHero: React.FC<NavbarHeroProps> = ({
                   <li><a href="#" className="block px-3 py-2 text-sm text-foreground hover:bg-muted rounded-lg">Blog</a></li>
                   <li><button onClick={() => setIsPricingModalOpen(true)} className="block w-full text-left px-3 py-2 text-sm text-foreground hover:bg-muted rounded-lg">Plans & Pricing</button></li>
                   <li className="border-t border-border mt-2 pt-2 space-y-2">
-                    <a href="#" className="block w-full text-center px-3 py-2 text-sm text-foreground hover:bg-muted rounded-lg">Login</a>
-                    <button className="w-full bg-foreground text-background hover:bg-muted-foreground px-3 py-2.5 text-sm rounded-lg flex items-center justify-center gap-2 font-medium">
+                    <a href="/signin" className="block w-full text-center px-3 py-2 text-sm text-foreground hover:bg-muted rounded-lg">Login</a>
+                    <a href="/signup" className="w-full bg-foreground text-background hover:bg-muted-foreground px-3 py-2.5 text-sm rounded-lg flex items-center justify-center gap-2 font-medium">
                       Get Started<ArrowRight className="h-4 w-4" />
-                    </button>
+                    </a>
                   </li>
                 </ul>
               )}
@@ -152,9 +152,9 @@ const NavbarHero: React.FC<NavbarHeroProps> = ({
                 <Mail className="absolute left-4 top-1/2 transform -translate-y-1/2 h-4 w-4 sm:h-5 sm:w-5 text-muted-foreground" />
                 <input type="email" placeholder={emailPlaceholder} value={email} onChange={(e) => setEmail(e.target.value)} className="w-full max-w-xs bg-muted border-border text-foreground placeholder-muted-foreground font-medium pl-10 pr-4 py-2 text-sm sm:pl-11 sm:py-3 sm:text-base rounded-full focus:outline-none focus:ring-2 focus:ring-ring" />
               </div>
-              <button onClick={handleEmailSubmit} className="bg-foreground hover:bg-muted-foreground text-background px-5 py-2 text-sm sm:px-6 sm:py-3 sm:text-base rounded-full normal-case font-medium transition-colors flex items-center gap-2">
+              <a href="/signup" className="bg-foreground hover:bg-muted-foreground text-background px-5 py-2 text-sm sm:px-6 sm:py-3 sm:text-base rounded-full normal-case font-medium transition-colors flex items-center gap-2">
                 Join Now<ArrowRight className="h-4 w-4" />
-              </button>
+              </a>
             </div>
           </div>
         </div>
