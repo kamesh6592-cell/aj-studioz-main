@@ -1,3 +1,5 @@
+'use client'
+
 import { SignInPage } from "@/components/sign-in";
 
 const mockTestimonials = [
