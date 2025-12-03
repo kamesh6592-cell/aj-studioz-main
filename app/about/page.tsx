@@ -96,6 +96,61 @@ export default function AboutPage() {
               </div>
             </div>
 
+            {/* Featured Projects Section */}
+            <div className="mb-20">
+              <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">Featured Projects</h2>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+                <div className="p-6 rounded-xl border border-border bg-card">
+                  <div className="mb-4">
+                    <span className="px-3 py-1 bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300 text-xs font-medium rounded-full">AI Tool</span>
+                  </div>
+                  <h3 className="text-xl font-semibold mb-3">NexaRiq</h3>
+                  <p className="text-muted-foreground mb-4">
+                    An advanced AI-powered platform designed to revolutionize the way we interact with artificial intelligence.
+                  </p>
+                  <a href="https://nexariq.ajstudioz.co.in/" target="_blank" rel="noopener noreferrer" 
+                     className="text-foreground hover:text-muted-foreground font-medium flex items-center gap-2">
+                    Visit Project →
+                  </a>
+                </div>
+
+                <div className="p-6 rounded-xl border border-border bg-card">
+                  <div className="mb-4">
+                    <span className="px-3 py-1 bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300 text-xs font-medium rounded-full">Development Tool</span>
+                  </div>
+                  <h3 className="text-xl font-semibold mb-3">NexaRiq Code Editor</h3>
+                  <p className="text-muted-foreground mb-4">
+                    A next-generation code editor integrated with AI agents to assist developers in coding.
+                  </p>
+                  <a href="https://nexariq-agentic-code-editor.vercel.app/" target="_blank" rel="noopener noreferrer" 
+                     className="text-foreground hover:text-muted-foreground font-medium flex items-center gap-2">
+                    Visit Project →
+                  </a>
+                </div>
+
+                <div className="p-6 rounded-xl border border-border bg-card">
+                  <div className="mb-4">
+                    <span className="px-3 py-1 bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300 text-xs font-medium rounded-full">Education</span>
+                  </div>
+                  <h3 className="text-xl font-semibold mb-3">GPA & CGPA Calculator</h3>
+                  <p className="text-muted-foreground mb-4">
+                    An intuitive tool for students to accurately calculate their Grade Point Averages.
+                  </p>
+                  <a href="https://cgpa-calc-aj.vercel.app/" target="_blank" rel="noopener noreferrer" 
+                     className="text-foreground hover:text-muted-foreground font-medium flex items-center gap-2">
+                    Visit Project →
+                  </a>
+                </div>
+              </div>
+              <div className="text-center">
+                <a href="/projects" 
+                   className="inline-flex items-center gap-2 px-6 py-3 bg-foreground text-background rounded-lg hover:bg-muted-foreground transition-colors font-medium">
+                  View All Projects
+                  <span>→</span>
+                </a>
+              </div>
+            </div>
+
             {/* Values */}
             <div className="text-center">
               <h2 className="text-3xl md:text-4xl font-bold mb-12">Our Values</h2>

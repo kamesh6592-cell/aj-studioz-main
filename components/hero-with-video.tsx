@@ -89,6 +89,7 @@ const NavbarHero: React.FC<NavbarHeroProps> = ({
             <nav className="hidden lg:flex text-muted-foreground font-medium">
               <ul className="flex items-center space-x-2">
                 <li><a href="/about" className="hover:text-foreground px-3 py-2 text-sm transition-colors rounded-lg">About</a></li>
+                <li><a href="/projects" className="hover:text-foreground px-3 py-2 text-sm transition-colors rounded-lg">Projects</a></li>
                 <li className="relative">
                   <button onClick={() => toggleDropdown('desktop-resources')} className="flex items-center hover:text-foreground px-3 py-2 text-sm transition-colors rounded-lg">
                     Resources<ChevronDown className={`h-4 w-4 ml-1 transition-transform ${openDropdown === 'desktop-resources' ? 'rotate-180' : ''}`} />
@@ -121,6 +122,7 @@ const NavbarHero: React.FC<NavbarHeroProps> = ({
               {isMobileMenuOpen && (
                 <ul className="absolute top-full right-0 mt-2 p-2 shadow-lg bg-card border border-border rounded-xl w-56 z-30">
                   <li><a href="/about" className="block px-3 py-2 text-sm text-foreground hover:bg-muted rounded-lg">About</a></li>
+                  <li><a href="/projects" className="block px-3 py-2 text-sm text-foreground hover:bg-muted rounded-lg">Projects</a></li>
                   <li><button onClick={() => toggleDropdown('mobile-resources')} className="w-full flex items-center justify-between px-3 py-2 text-sm text-foreground hover:bg-muted rounded-lg">
                       Resources<ChevronDown className={`h-4 w-4 transition-transform ${openDropdown === 'mobile-resources' ? 'rotate-180' : ''}`} />
                   </button>
