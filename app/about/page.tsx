@@ -87,7 +87,7 @@ export default function AboutPage() {
                 <ProfileCard
                   name="AJ KAMESH"
                   description="Visionary entrepreneur and AI technology pioneer. Leading the revolution in conversational AI and machine learning solutions for next-generation businesses."
-                  image="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=800&fit=crop&auto=format&q=80"
+                  image="/WhatsApp Image 2025-11-04 at 13.19.15_d23503e7.jpg"
                   isVerified={true}
                   followers={2840}
                   following={180}
