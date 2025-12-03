@@ -88,15 +88,15 @@ const NavbarHero: React.FC<NavbarHeroProps> = ({
             </a>
             <nav className="hidden lg:flex text-muted-foreground font-medium">
               <ul className="flex items-center space-x-2">
-                <li><a href="#" className="hover:text-foreground px-3 py-2 text-sm transition-colors rounded-lg">About</a></li>
+                <li><a href="/about" className="hover:text-foreground px-3 py-2 text-sm transition-colors rounded-lg">About</a></li>
                 <li className="relative">
                   <button onClick={() => toggleDropdown('desktop-resources')} className="flex items-center hover:text-foreground px-3 py-2 text-sm transition-colors rounded-lg">
                     Resources<ChevronDown className={`h-4 w-4 ml-1 transition-transform ${openDropdown === 'desktop-resources' ? 'rotate-180' : ''}`} />
                   </button>
                   {openDropdown === 'desktop-resources' && (
                     <ul className="absolute top-full left-0 mt-2 p-2 bg-card border border-border shadow-lg rounded-xl z-20 w-48">
-                      <li><a href="#" className="block px-3 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg">Submenu 1</a></li>
-                      <li><a href="#" className="block px-3 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg">Submenu 2</a></li>
+                      <li><a href="#" className="block px-3 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg">Documentation</a></li>
+                      <li><a href="#" className="block px-3 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg">API Reference</a></li>
                     </ul>
                   )}
                 </li>
@@ -120,13 +120,13 @@ const NavbarHero: React.FC<NavbarHeroProps> = ({
               </button>
               {isMobileMenuOpen && (
                 <ul className="absolute top-full right-0 mt-2 p-2 shadow-lg bg-card border border-border rounded-xl w-56 z-30">
-                  <li><a href="#" className="block px-3 py-2 text-sm text-foreground hover:bg-muted rounded-lg">About</a></li>
+                  <li><a href="/about" className="block px-3 py-2 text-sm text-foreground hover:bg-muted rounded-lg">About</a></li>
                   <li><button onClick={() => toggleDropdown('mobile-resources')} className="w-full flex items-center justify-between px-3 py-2 text-sm text-foreground hover:bg-muted rounded-lg">
                       Resources<ChevronDown className={`h-4 w-4 transition-transform ${openDropdown === 'mobile-resources' ? 'rotate-180' : ''}`} />
                   </button>
                   {openDropdown === 'mobile-resources' && (<ul className="ml-4 mt-1 border-l border-border pl-3">
-                      <li><a href="#" className="block px-3 py-1.5 text-sm text-muted-foreground hover:bg-muted hover:text-foreground rounded-lg">Submenu 1</a></li>
-                      <li><a href="#" className="block px-3 py-1.5 text-sm text-muted-foreground hover:bg-muted hover:text-foreground rounded-lg">Submenu 2</a></li>
+                      <li><a href="#" className="block px-3 py-1.5 text-sm text-muted-foreground hover:bg-muted hover:text-foreground rounded-lg">Documentation</a></li>
+                      <li><a href="#" className="block px-3 py-1.5 text-sm text-muted-foreground hover:bg-muted hover:text-foreground rounded-lg">API Reference</a></li>
                   </ul>)}</li>
                   <li><a href="#" className="block px-3 py-2 text-sm text-foreground hover:bg-muted rounded-lg">Blog</a></li>
                   <li><a href="/pricing" className="block px-3 py-2 text-sm text-foreground hover:bg-muted rounded-lg">Plans & Pricing</a></li>
