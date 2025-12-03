@@ -291,16 +291,16 @@ export default function AppIntegrationComponent() {
         </div>
 
         {/* CTA Section */}
-        <div className="text-center bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 md:p-12 text-white">
+        <div className="text-center bg-black dark:bg-white rounded-2xl p-8 md:p-12 text-white dark:text-black border-2 border-border">
           <h3 className="text-3xl font-bold mb-4">Ready to Integrate?</h3>
-          <p className="text-xl mb-8 text-blue-100 max-w-2xl mx-auto">
+          <p className="text-xl mb-8 text-gray-300 dark:text-gray-700 max-w-2xl mx-auto">
             Let's discuss your project requirements and create a custom solution tailored to your needs.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" variant="secondary" className="bg-white text-blue-600 hover:bg-blue-50">
+            <Button size="lg" variant="secondary" className="bg-white dark:bg-black text-black dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 border-2 border-gray-200 dark:border-gray-700">
               Schedule Consultation
             </Button>
-            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-blue-600">
+            <Button size="lg" variant="outline" className="border-white dark:border-black text-white dark:text-black hover:bg-white hover:text-black dark:hover:bg-black dark:hover:text-white border-2">
               View Portfolio
             </Button>
           </div>

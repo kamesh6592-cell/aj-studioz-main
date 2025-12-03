@@ -317,16 +317,16 @@ export default function TestimonialsComponent() {
         </div>
 
         {/* CTA Section */}
-        <div className="text-center bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 md:p-12 text-white">
+        <div className="text-center bg-black dark:bg-white rounded-2xl p-8 md:p-12 text-white dark:text-black border-2 border-border">
           <h3 className="text-3xl font-bold mb-4">Ready to Join Our Success Stories?</h3>
-          <p className="text-xl mb-8 text-blue-100 max-w-2xl mx-auto">
+          <p className="text-xl mb-8 text-gray-300 dark:text-gray-700 max-w-2xl mx-auto">
             Let's create something amazing together. Start your project with AJ STUDIOZ and become our next success story.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="px-8 py-3 bg-white text-blue-600 rounded-full font-semibold hover:bg-blue-50 transition-colors">
+            <button className="px-8 py-3 bg-white dark:bg-black text-black dark:text-white rounded-full font-semibold hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors border-2 border-gray-200 dark:border-gray-700">
               Start Your Project
             </button>
-            <button className="px-8 py-3 border-2 border-white text-white rounded-full font-semibold hover:bg-white hover:text-blue-600 transition-colors">
+            <button className="px-8 py-3 border-2 border-white dark:border-black text-white dark:text-black rounded-full font-semibold hover:bg-white hover:text-black dark:hover:bg-black dark:hover:text-white transition-colors">
               View Our Work
             </button>
           </div>

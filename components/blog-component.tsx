@@ -309,18 +309,18 @@ export default function BlogComponent() {
           </div>
 
           {/* Newsletter Subscription */}
-          <div className="mt-20 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 md:p-12 text-center text-white">
+          <div className="mt-20 bg-black dark:bg-white rounded-2xl p-8 md:p-12 text-center text-white dark:text-black border-2 border-border">
             <h3 className="text-3xl font-bold mb-4">Stay Updated</h3>
-            <p className="text-xl mb-8 text-blue-100">
+            <p className="text-xl mb-8 text-gray-300 dark:text-gray-700">
               Subscribe to our newsletter and get the latest insights delivered to your inbox.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
               <Input 
                 type="email" 
                 placeholder="Your email address"
-                className="bg-white text-gray-900 border-0"
+                className="bg-white dark:bg-black text-gray-900 dark:text-white border-2 border-gray-200 dark:border-gray-700"
               />
-              <Button variant="secondary" size="lg" className="bg-white text-blue-600 hover:bg-blue-50">
+              <Button variant="secondary" size="lg" className="bg-white dark:bg-black text-black dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 border-2 border-gray-200 dark:border-gray-700">
                 Subscribe
               </Button>
             </div>

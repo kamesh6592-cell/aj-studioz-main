@@ -60,7 +60,7 @@ export function BookProjectsModal() {
 
   return (
     <Modal>
-      <ModalTrigger className="bg-gradient-to-br from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-6 py-3 rounded-xl font-medium transition-all duration-300 shadow-lg hover:shadow-xl">
+      <ModalTrigger className="bg-black dark:bg-white hover:bg-gray-800 dark:hover:bg-gray-100 text-white dark:text-black px-6 py-3 rounded-xl font-medium transition-all duration-300 shadow-lg hover:shadow-xl border-2 border-gray-700 dark:border-gray-300">
         Book Our Projects
       </ModalTrigger>
       <ModalBody>
@@ -229,7 +229,7 @@ export function BookProjectsModal() {
             </Button>
             <Button 
               onClick={handleSubmit}
-              className="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+              className="flex-1 bg-black dark:bg-white hover:bg-gray-800 dark:hover:bg-gray-100 text-white dark:text-black border-2 border-gray-700 dark:border-gray-300"
             >
               Submit Project Request
               <ArrowRight className="w-4 h-4 ml-2" />
