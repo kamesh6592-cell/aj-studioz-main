@@ -1,6 +1,6 @@
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { ExternalLink, Github } from "lucide-react";
+import ProjectCard from "@/components/project-card";
+import { ExternalLink } from "lucide-react";
 
 interface Project {
   category: string;
@@ -112,59 +112,14 @@ export default function ProjectsPage() {
           {/* Projects Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
             {projects.map((project, index) => (
-              <Card key={index} className="group hover:shadow-lg transition-all duration-300 border-border/50 hover:border-border">
-                <CardHeader>
-                  <div className="flex items-center justify-between mb-3">
-                    <Badge 
-                      variant="secondary" 
-                      className={`text-xs font-medium ${categoryColors[project.category]}`}
-                    >
-                      {project.category}
-                    </Badge>
-                    <a
-                      href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-muted-foreground hover:text-foreground transition-colors"
-                    >
-                      <ExternalLink className="h-4 w-4" />
-                    </a>
-                  </div>
-                  <CardTitle className="text-xl font-bold group-hover:text-primary transition-colors">
-                    {project.title}
-                  </CardTitle>
-                  <CardDescription className="text-muted-foreground leading-relaxed">
-                    {project.description}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-4">
-                    {/* Tags */}
-                    <div className="flex flex-wrap gap-2">
-                      {project.tags.map((tag, tagIndex) => (
-                        <Badge 
-                          key={tagIndex} 
-                          variant="outline" 
-                          className="text-xs px-2 py-1 border-muted-foreground/20 text-muted-foreground hover:text-foreground hover:border-foreground/30 transition-colors"
-                        >
-                          {tag}
-                        </Badge>
-                      ))}
-                    </div>
-                    
-                    {/* Link */}
-                    <a
-                      href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-4 py-2 bg-foreground text-background rounded-lg hover:bg-muted-foreground transition-colors text-sm font-medium w-full justify-center"
-                    >
-                      Visit Project
-                      <ExternalLink className="h-3 w-3" />
-                    </a>
-                  </div>
-                </CardContent>
-              </Card>
+              <ProjectCard
+                key={index}
+                category={project.category}
+                title={project.title}
+                description={project.description}
+                link={project.link}
+                tags={project.tags}
+              />
             ))}
           </div>
 
