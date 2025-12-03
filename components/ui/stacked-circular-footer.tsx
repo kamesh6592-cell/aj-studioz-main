@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Facebook, Instagram, Linkedin, Twitter } from "lucide-react"
+import PrivacyPolicyModal from "../privacy-policy-modal"
 
 function StackedCircularFooter() {
   return (
@@ -15,7 +16,7 @@ function StackedCircularFooter() {
           <nav className="mb-8 flex flex-wrap justify-center gap-6">
             <a href="#" className="hover:text-primary">Home</a>
             <a href="#" className="hover:text-primary">Features</a>
-            <a href="#" className="hover:text-primary">Pricing</a>
+            <a href="/pricing" className="hover:text-primary">Pricing</a>
             <a href="#" className="hover:text-primary">Documentation</a>
             <a href="#" className="hover:text-primary">Support</a>
           </nav>
@@ -45,6 +46,9 @@ function StackedCircularFooter() {
               </div>
               <Button type="submit" className="rounded-full">Subscribe</Button>
             </form>
+          </div>
+          <div className="mb-6 flex justify-center">
+            <PrivacyPolicyModal />
           </div>
           <div className="text-center">
             <p className="text-sm text-muted-foreground">
