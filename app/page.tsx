@@ -1,5 +1,6 @@
 import { NavbarHero } from "@/components/hero-with-video";
 import RotatingGradientRight from "@/components/rotating-gradient-right";
+import TestimonialsComponent from "@/components/testimonials-component";
 import { StackedCircularFooter } from "@/components/ui/stacked-circular-footer";
 
 export default function Home() {
@@ -12,6 +13,7 @@ export default function Home() {
         emailPlaceholder="Enter your email"
       />
       <RotatingGradientRight />
+      <TestimonialsComponent />
       <StackedCircularFooter />
     </div>
   );
