@@ -94,12 +94,12 @@ const blogPosts: BlogPost[] = [
 const categories = ['All', 'AI Technology', 'Web Development', 'Machine Learning', 'Design', 'Cloud Computing', 'Security']
 
 const categoryColors: { [key: string]: string } = {
-  'AI Technology': 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300',
-  'Web Development': 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300',
-  'Machine Learning': 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300',
-  'Design': 'bg-pink-100 text-pink-800 dark:bg-pink-900 dark:text-pink-300',
-  'Cloud Computing': 'bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-300',
-  'Security': 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300'
+  'AI Technology': 'bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200',
+  'Web Development': 'bg-gray-200 text-gray-900 dark:bg-gray-700 dark:text-gray-100',
+  'Machine Learning': 'bg-gray-300 text-gray-900 dark:bg-gray-600 dark:text-gray-100',
+  'Design': 'bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300',
+  'Cloud Computing': 'bg-gray-200 text-gray-800 dark:bg-gray-700 dark:text-gray-200',
+  'Security': 'bg-gray-300 text-gray-900 dark:bg-gray-600 dark:text-gray-100'
 }
 
 export default function BlogComponent() {

@@ -1,6 +1,7 @@
 import { Badge } from "@/components/ui/badge";
 import ProjectCard from "@/components/project-card";
 import { BookProjectsModal } from "@/components/book-projects-modal";
+import AppIntegrationComponent from "@/components/app-integration";
 import { ExternalLink } from "lucide-react";
 
 interface Project {
@@ -64,13 +65,13 @@ const projects: Project[] = [
 ];
 
 const categoryColors: { [key: string]: string } = {
-  "Education": "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300",
-  "Geolocation": "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300",
-  "Business": "bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300",
-  "Entertainment": "bg-pink-100 text-pink-800 dark:bg-pink-900 dark:text-pink-300",
-  "Web Tool": "bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-300",
-  "AI Tool": "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300",
-  "Development Tool": "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300"
+  "Education": "bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200",
+  "Geolocation": "bg-gray-200 text-gray-900 dark:bg-gray-700 dark:text-gray-100",
+  "Business": "bg-gray-300 text-gray-900 dark:bg-gray-600 dark:text-gray-100",
+  "Entertainment": "bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300",
+  "Web Tool": "bg-gray-200 text-gray-800 dark:bg-gray-700 dark:text-gray-200",
+  "AI Tool": "bg-gray-300 text-gray-900 dark:bg-gray-600 dark:text-gray-100",
+  "Development Tool": "bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200"
 };
 
 export default function ProjectsPage() {
@@ -163,6 +164,9 @@ export default function ProjectsPage() {
           </div>
         </div>
       </div>
+      
+      {/* Integration Services Section */}
+      <AppIntegrationComponent />
     </div>
   );
 }
