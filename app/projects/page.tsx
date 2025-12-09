@@ -167,6 +167,22 @@ const projects: Project[] = [
       "Deep Thinking: Complex problem analysis",
       "Gentle Learning: Educational conversations"
     ]
+  },
+  {
+    id: 11,
+    title: "TOMO BUSINESS - Digital Card Builder",
+    description: "TOMO BUSINESS is a modern networking tool for creating premium digital profiles that replace physical cards, enabling instant NFC sharing on any smartphone without apps, customizable domains like tomo.business/yourname, and real-time connection analytics.",
+    image: "/tomo-business-vercel-app-1024x768desktop-4a9161.png",
+    link: "https://tomo-business.vercel.app/",
+    category: "Business Tool",
+    features: [
+      "NFC Instant Share: Tap-to-share profile on smartphones; no receiver app needed",
+      "Custom Domain: Professional links like tomo.business/yourname, SEO-friendly",
+      "Mobile Optimized: Instant loading and premium appearance on all devices",
+      "Real-time Analytics: Track connections and engagement",
+      "Replaces Physical Cards: Modern digital networking solution",
+      "No App Required: Works instantly on any smartphone"
+    ]
   }
 ];
 
@@ -177,7 +193,8 @@ const categoryColors: { [key: string]: string } = {
   "AI Research Tool": "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300",
   "Staff Portal": "bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200",
   "Education Platform": "bg-pink-100 text-pink-800 dark:bg-pink-900/30 dark:text-pink-300",
-  "Developer Tool": "bg-cyan-100 text-cyan-800 dark:bg-cyan-900/30 dark:text-cyan-300"
+  "Developer Tool": "bg-cyan-100 text-cyan-800 dark:bg-cyan-900/30 dark:text-cyan-300",
+  "Business Tool": "bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-300"
 };
 
 export default function ProjectsPage() {
@@ -242,7 +259,7 @@ export default function ProjectsPage() {
               </p>
               <div className="grid md:grid-cols-3 gap-8 mt-12">
                 <div className="text-center">
-                  <div className="text-4xl font-bold text-[#C5A059] mb-2">10</div>
+                  <div className="text-4xl font-bold text-[#C5A059] mb-2">11</div>
                   <p className="text-muted-foreground">TOMO Products</p>
                 </div>
                 <div className="text-center">
