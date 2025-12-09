@@ -219,19 +219,18 @@ const projects: Project[] = [
   },
   {
     id: 14,
-    title: "MEOW CHAT - Free AI Chat with Multiple Models",
-    description: "MEOW CHAT by AJ STUDIOZ is a free AI chat platform supporting multiple models for engaging conversations focused on summaries, code generation, design ideas, research, inspiration, deep thinking, and gentle learning.",
+    title: "MEOW CHAT - File Storage with QR Generation",
+    description: "MEOW CHAT by AJ STUDIOZ is a file storage system that allows users to upload files and instantly generates QR codes for easy sharing and access. Store documents, images, and files securely with QR-based retrieval.",
     image: "/cloud-zeta-snowy-vercel-app-1024x768desktop-650d42.png",
     link: "https://cloud-zeta-snowy.vercel.app/",
-    category: "AI Chat",
+    category: "File Storage",
     features: [
-      "Summary: Condense information efficiently",
-      "Code: Generate or assist with programming tasks",
-      "Design: Creative design prompts and ideas",
-      "Research: In-depth topic exploration and analysis",
-      "Inspiration: Creative thinking and brainstorming",
-      "Deep Thinking: Complex problem-solving conversations",
-      "Gentle Learning: Educational and supportive interactions"
+      "File Upload: Store documents, images, and various file types",
+      "QR Code Generation: Instant QR codes for uploaded files",
+      "Easy Sharing: Share files via QR code scanning",
+      "Quick Access: Retrieve files by scanning QR codes",
+      "Secure Storage: Safe file storage and management",
+      "Multiple Formats: Support for various file types"
     ]
   },
   {
@@ -262,7 +261,8 @@ const categoryColors: { [key: string]: string } = {
   "Developer Tool": "bg-cyan-100 text-cyan-800 dark:bg-cyan-900/30 dark:text-cyan-300",
   "Business Tool": "bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-300",
   "Document Tool": "bg-indigo-100 text-indigo-800 dark:bg-indigo-900/30 dark:text-indigo-300",
-  "Transport Services": "bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-300"
+  "Transport Services": "bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-300",
+  "File Storage": "bg-teal-100 text-teal-800 dark:bg-teal-900/30 dark:text-teal-300"
 };
 
 export default function ProjectsPage() {
