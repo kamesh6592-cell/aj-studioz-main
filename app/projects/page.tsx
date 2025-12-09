@@ -200,6 +200,22 @@ const projects: Project[] = [
       "Real-time Preview: Instant formatted view as you type",
       "Mobile Responsive: Works seamlessly on all devices"
     ]
+  },
+  {
+    id: 13,
+    title: "MVK Transports Mecheri - Advanced Transport Solutions",
+    description: "MVK Transports, operating since 2019 from Mecheri, provides reliable, efficient, technology-driven transport services with 5+ years experience, 100% reliability, and 24/7 support.",
+    image: "/mvk-transports-vercel-app-1024x768desktop-0c37c6 (1).png",
+    link: "https://mvk-transports.vercel.app/",
+    category: "Transport Services",
+    features: [
+      "Goods Transportation: Real-time GPS tracking, temperature control, insurance coverage",
+      "24/7 Monitoring: Round-the-clock support and tracking",
+      "Relocation Services: Expert packing, fragile handling, assembly, storage options",
+      "Construction Logistics: Heavy machinery, bulk materials, site delivery",
+      "Project Management: End-to-end logistics coordination",
+      "5+ Years Experience: Established since 2019 with 100% reliability"
+    ]
   }
 ];
 
@@ -212,7 +228,8 @@ const categoryColors: { [key: string]: string } = {
   "Education Platform": "bg-pink-100 text-pink-800 dark:bg-pink-900/30 dark:text-pink-300",
   "Developer Tool": "bg-cyan-100 text-cyan-800 dark:bg-cyan-900/30 dark:text-cyan-300",
   "Business Tool": "bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-300",
-  "Document Tool": "bg-indigo-100 text-indigo-800 dark:bg-indigo-900/30 dark:text-indigo-300"
+  "Document Tool": "bg-indigo-100 text-indigo-800 dark:bg-indigo-900/30 dark:text-indigo-300",
+  "Transport Services": "bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-300"
 };
 
 export default function ProjectsPage() {
@@ -277,7 +294,7 @@ export default function ProjectsPage() {
               </p>
               <div className="grid md:grid-cols-3 gap-8 mt-12">
                 <div className="text-center">
-                  <div className="text-4xl font-bold text-[#C5A059] mb-2">12</div>
+                  <div className="text-4xl font-bold text-[#C5A059] mb-2">13</div>
                   <p className="text-muted-foreground">TOMO Products</p>
                 </div>
                 <div className="text-center">
