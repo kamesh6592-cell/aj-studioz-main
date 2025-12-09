@@ -1,77 +1,86 @@
 import { Badge } from "@/components/ui/badge";
-import ProjectCard from "@/components/project-card";
+import TomoProjectCard from "@/components/tomo-project-card";
 import { BookProjectsModal } from "@/components/book-projects-modal";
 import AppIntegrationComponent from "@/components/app-integration";
-import { ExternalLink } from "lucide-react";
 
 interface Project {
-  category: string;
+  id: number;
   title: string;
   description: string;
+  image: string | string[];
   link: string;
-  tags: string[];
+  features: string[];
+  category: string;
 }
 
 const projects: Project[] = [
-  { 
-    category: "Education", 
-    title: "GPA & CGPA Calculator", 
-    description: "An intuitive tool for students to accurately calculate their Grade Point Averages, featuring a clean and user-friendly interface.", 
-    link: "https://cgpa-calc-aj.vercel.app/",
-    tags: ["HTML", "CSS", "JavaScript", "Education"]
+  {
+    id: 1,
+    title: "TOMO Vibecoding Tool",
+    description: "TOMO is an AI-powered code editor that enables users to code and build websites in seconds, featuring multi-page support, auto-deployment, free hosting with global CDN, open-source AI models like Llama and Mistral, Hugging Face integration, and optimized performance.",
+    image: "/dev-aj-tool-vercel-app-1024x768desktop-acda78.png",
+    link: "https://dev-aj-tool.vercel.app/",
+    category: "AI Development Tool",
+    features: [
+      "Multi Pages: Supports dynamic routing, navigation, and SEO-ready complex websites",
+      "Auto Deploy: Instant live updates without CI/CD setup",
+      "Free Hosting: Global CDN for fast performance",
+      "Open Source Models: Powered by Llama, Mistral, CodeLlama for transparency",
+      "Hugging Face Integration: Access to advanced models and datasets",
+      "Blazing Fast UX: Edge computing and caching for developers and non-developers"
+    ]
   },
-  { 
-    category: "Geolocation", 
-    title: "Location Tracking Website", 
-    description: "A web application that demonstrates real-time location fetching, built to explore and implement geolocation browser APIs.", 
-    link: "https://cgpa-calc-location-fetch.vercel.app/",
-    tags: ["HTML", "CSS", "JavaScript", "Geolocation API"]
+  {
+    id: 2,
+    title: "TOMO Bot - AI Email Assistant",
+    description: "TOMO bot is an AI assistant developed by AJ STUDIOZ that helps users compose, send, and manage professional emails efficiently, with commands like 'Send a thank you email to [email]' or 'Help me write a professional email'.",
+    image: "/workflow-one-gamma-vercel-app-1024x768desktop-f1ea93.png",
+    link: "https://workflow-one-gamma.vercel.app/",
+    category: "AI Email Assistant",
+    features: [
+      "Send Thank You: Quickly generate and send thank-you emails",
+      "Professional Email: Assist in writing polished professional correspondence",
+      "Compose Email: Streamline email creation and management"
+    ]
   },
-  { 
-    category: "Business", 
-    title: "MVK Transports Website", 
-    description: "A professional, multi-page business website designed for a transport company, featuring service details and contact information.", 
-    link: "https://mvk-transports.vercel.app/",
-    tags: ["HTML", "CSS", "JavaScript", "Business", "Multi-page"]
+  {
+    id: 3,
+    title: "TOMO - AI-Powered Chat Assistant",
+    description: "TOMO is an advanced AI-powered chat assistant featuring intelligent tools, voice chat, image generation, and real-time search for future-forward AI conversations.",
+    image: ["/tomo-chat-web.jpeg", "/hello-its-vercel-app-1024x768desktop-72ac20.png"],
+    link: "https://chat.tomoacademy.site",
+    category: "AI Chat",
+    features: [
+      "Intelligent Tools: Advanced AI capabilities for smart interactions",
+      "Voice Chat: Supports voice-based conversations",
+      "Image Generation: Creates images within chats",
+      "Real-Time Search: Integrates live web search",
+      "Access: User login via email/password or Google; sign-up available"
+    ]
   },
-  { 
-    category: "Entertainment", 
-    title: "MusiQ Player", 
-    description: "A sleek and functional music player interface, allowing users to play and control audio directly in their browser.", 
-    link: "https://aj-musiq-factory.vercel.app/",
-    tags: ["HTML", "CSS", "JavaScript", "Audio API", "Entertainment"]
-  },
-  { 
-    category: "Web Tool", 
-    title: "Age Calculator", 
-    description: "A simple yet effective utility that calculates a user's precise age based on their date of birth.", 
-    link: "https://kamesh14151.github.io/AJ-COMPANY/",
-    tags: ["HTML", "CSS", "JavaScript", "Utility", "Web Tool"]
-  },
-  { 
-    category: "AI Tool", 
-    title: "NexaRiq", 
-    description: "An advanced AI-powered platform designed to revolutionize the way we interact with artificial intelligence in our daily tasks.", 
-    link: "https://nexariq.ajstudioz.co.in/",
-    tags: ["AI", "Web Application", "JavaScript", "React", "Node.js"]
-  },
-  { 
-    category: "Development Tool", 
-    title: "NexaRiq Agentic Code Editor", 
-    description: "A next-generation code editor integrated with AI agents to assist developers in writing, debugging, and optimizing code.", 
-    link: "https://nexariq-agentic-code-editor.vercel.app/",
-    tags: ["Code Editor", "AI", "JavaScript", "React", "Development Tool"]
+  {
+    id: 4,
+    title: "TOMO Academy - Internal Management Tool",
+    description: "TOMO Academy is a premium digital platform and comprehensive internal tool designed to streamline operations, manage a team of 14+ creators, and optimize YouTube channel success, built specifically for content creation workflows.",
+    image: "/tomo-forge-hub-vercel-app-1024x768desktop-dbc84d.png",
+    link: "",
+    category: "Staff Portal",
+    features: [
+      "Team Management: Digital employee profiles with ID cards and QR codes for identity verification",
+      "Content Hub: Track YouTube uploads, scheduling, and performance metrics",
+      "Task Board: Kanban-style project management with assignments, deadlines, and progress tracking",
+      "Analytics: Insights into channel performance, team productivity, and content metrics",
+      "Secure Access: Role-based permissions with Firebase authentication and audit trails",
+      "Automation: Workflows for onboarding, notifications, and reporting"
+    ]
   }
 ];
 
 const categoryColors: { [key: string]: string } = {
-  "Education": "bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200",
-  "Geolocation": "bg-gray-200 text-gray-900 dark:bg-gray-700 dark:text-gray-100",
-  "Business": "bg-gray-300 text-gray-900 dark:bg-gray-600 dark:text-gray-100",
-  "Entertainment": "bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300",
-  "Web Tool": "bg-gray-200 text-gray-800 dark:bg-gray-700 dark:text-gray-200",
-  "AI Tool": "bg-gray-300 text-gray-900 dark:bg-gray-600 dark:text-gray-100",
-  "Development Tool": "bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200"
+  "AI Development Tool": "bg-[#C5A059]/10 text-[#C5A059] dark:bg-[#C5A059]/20 dark:text-[#C5A059]",
+  "AI Email Assistant": "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300",
+  "AI Chat": "bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300",
+  "Staff Portal": "bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200"
 };
 
 export default function ProjectsPage() {
@@ -86,8 +95,8 @@ export default function ProjectsPage() {
             Our Projects
           </h1>
           <p className="text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto">
-            Explore our diverse portfolio of innovative web applications, tools, and AI-powered solutions 
-            that showcase our expertise across various domains.
+            Explore our innovative TOMO suite of AI-powered tools and platforms, 
+            built by AJ STUDIOZ to revolutionize productivity and creativity.
           </p>
           <div className="mt-8 flex justify-center">
             <BookProjectsModal />
@@ -115,15 +124,12 @@ export default function ProjectsPage() {
           </div>
 
           {/* Projects Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 max-w-7xl mx-auto">
             {projects.map((project, index) => (
-              <ProjectCard
-                key={index}
-                category={project.category}
-                title={project.title}
-                description={project.description}
-                link={project.link}
-                tags={project.tags}
+              <TomoProjectCard
+                key={project.id}
+                project={project}
+                index={index}
               />
             ))}
           </div>
@@ -131,32 +137,33 @@ export default function ProjectsPage() {
           {/* Additional Info */}
           <div className="mt-20 text-center">
             <div className="max-w-3xl mx-auto">
-              <h2 className="text-3xl font-bold mb-6">Building the Future</h2>
+              <h2 className="text-3xl font-bold mb-6">The TOMO Ecosystem</h2>
               <p className="text-lg text-muted-foreground mb-8">
-                At AJ STUDIOZ, we're passionate about creating innovative solutions that solve real-world problems. 
-                Each project represents our commitment to excellence, user experience, and cutting-edge technology.
+                At AJ STUDIOZ, we've built the TOMO suite of AI-powered tools to revolutionize how teams work, 
+                code, and communicate. Each project represents our commitment to innovation, user experience, 
+                and cutting-edge AI technology.
               </p>
               <div className="grid md:grid-cols-3 gap-8 mt-12">
                 <div className="text-center">
-                  <div className="text-4xl font-bold text-primary mb-2">{projects.length}+</div>
-                  <p className="text-muted-foreground">Projects Delivered</p>
+                  <div className="text-4xl font-bold text-[#C5A059] mb-2">{projects.length}</div>
+                  <p className="text-muted-foreground">TOMO Products</p>
                 </div>
                 <div className="text-center">
-                  <div className="text-4xl font-bold text-primary mb-2">{categories.length}</div>
-                  <p className="text-muted-foreground">Technology Domains</p>
+                  <div className="text-4xl font-bold text-[#C5A059] mb-2">{categories.length}</div>
+                  <p className="text-muted-foreground">AI Solutions</p>
                 </div>
                 <div className="text-center">
-                  <div className="text-4xl font-bold text-primary mb-2">100%</div>
-                  <p className="text-muted-foreground">Client Satisfaction</p>
+                  <div className="text-4xl font-bold text-[#C5A059] mb-2">24/7</div>
+                  <p className="text-muted-foreground">Always Available</p>
                 </div>
               </div>
               
               {/* Call to Action */}
               <div className="mt-16 text-center">
-                <h3 className="text-2xl font-bold mb-4">Ready to Start Your Project?</h3>
+                <h3 className="text-2xl font-bold mb-4">Ready to Transform Your Workflow?</h3>
                 <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
-                  Let's discuss how we can bring your vision to life. Our expert team is ready to create 
-                  innovative solutions tailored to your specific needs.
+                  Discover how TOMO's AI-powered tools can enhance your productivity, streamline your development, 
+                  and revolutionize your team's collaboration.
                 </p>
                 <BookProjectsModal />
               </div>
