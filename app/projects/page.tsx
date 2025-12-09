@@ -216,6 +216,39 @@ const projects: Project[] = [
       "Project Management: End-to-end logistics coordination",
       "5+ Years Experience: Established since 2019 with 100% reliability"
     ]
+  },
+  {
+    id: 14,
+    title: "MEOW CHAT - Free AI Chat with Multiple Models",
+    description: "MEOW CHAT by AJ STUDIOZ is a free AI chat platform supporting multiple models for engaging conversations focused on summaries, code generation, design ideas, research, inspiration, deep thinking, and gentle learning.",
+    image: "/cloud-zeta-snowy-vercel-app-1024x768desktop-650d42.png",
+    link: "https://cloud-zeta-snowy.vercel.app/",
+    category: "AI Chat",
+    features: [
+      "Summary: Condense information efficiently",
+      "Code: Generate or assist with programming tasks",
+      "Design: Creative design prompts and ideas",
+      "Research: In-depth topic exploration and analysis",
+      "Inspiration: Creative thinking and brainstorming",
+      "Deep Thinking: Complex problem-solving conversations",
+      "Gentle Learning: Educational and supportive interactions"
+    ]
+  },
+  {
+    id: 15,
+    title: "AJ STUDIOZ CHAT",
+    description: "AJ STUDIOZ CHAT is an AI chat platform supporting guest access, powered by Lynxa models for versatile interactions including coding assistance, essay writing, technical queries, and weather checks.",
+    image: "/chat-ajstudioz-co-in-1024x768desktop-217e5d.png",
+    link: "https://chat.ajstudioz.co.in/",
+    category: "AI Chat",
+    features: [
+      "Lynxa Lite ⚡: ChatGPT-style fast responses for daily conversations",
+      "Lynxa Pro 🚀: Powerful model with artifacts for coding and complex tasks",
+      "Lynxa Student Pro 🎓: Advanced student assistant for PDFs, docs, images",
+      "Guest Access: No login required for quick conversations",
+      "Export Options: Save conversations to PDF/Word with branding",
+      "Versatile AI: Coding, essays, technical queries, weather info"
+    ]
   }
 ];
 
@@ -294,7 +327,7 @@ export default function ProjectsPage() {
               </p>
               <div className="grid md:grid-cols-3 gap-8 mt-12">
                 <div className="text-center">
-                  <div className="text-4xl font-bold text-[#C5A059] mb-2">13</div>
+                  <div className="text-4xl font-bold text-[#C5A059] mb-2">15</div>
                   <p className="text-muted-foreground">TOMO Products</p>
                 </div>
                 <div className="text-center">
