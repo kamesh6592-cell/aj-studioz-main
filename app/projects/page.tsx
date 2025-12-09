@@ -219,8 +219,8 @@ const projects: Project[] = [
   },
   {
     id: 14,
-    title: "MEOW CHAT - File Storage with QR Generation",
-    description: "MEOW CHAT by AJ STUDIOZ is a file storage system that allows users to upload files and instantly generates QR codes for easy sharing and access. Store documents, images, and files securely with QR-based retrieval.",
+    title: "AJ STORAGE - File Storage with QR Generation",
+    description: "AJ STORAGE by AJ STUDIOZ is a file storage system that allows users to upload files and instantly generates QR codes for easy sharing and access. Store documents, images, and files securely with QR-based retrieval.",
     image: "/cloud-zeta-snowy-vercel-app-1024x768desktop-650d42.png",
     link: "https://cloud-zeta-snowy.vercel.app/",
     category: "File Storage",
