@@ -183,6 +183,23 @@ const projects: Project[] = [
       "Replaces Physical Cards: Modern digital networking solution",
       "No App Required: Works instantly on any smartphone"
     ]
+  },
+  {
+    id: 12,
+    title: "TOMO MEOW - Professional Document Formatter",
+    description: "TOMO MEOW by AJ STUDIOZ is a professional document formatter tool that converts plain text or Markdown into styled documents with real-time preview and exports to PDF or DOCX, ideal for notes, code, and reports like Java I/O Streams tutorials.",
+    image: ["/docustyle-studio-vercel-app-1024x768desktop-13d1ab.png", "/tomo-meow-studio-vercel-app-1024x768desktop-478946.png"],
+    link: "https://doc.tomoacademy.site/",
+    category: "Document Tool",
+    features: [
+      "Syntax Highlighting: Colored code display for programming languages",
+      "Beautiful Tables: Formatted tabular data with professional styling",
+      "Professional Styling: Polished layouts for documents and reports",
+      "Auto-Detect Formatting: Intelligent plain text parsing",
+      "Export PDF/DOCX: Download formatted content in multiple formats",
+      "Real-time Preview: Instant formatted view as you type",
+      "Mobile Responsive: Works seamlessly on all devices"
+    ]
   }
 ];
 
@@ -194,7 +211,8 @@ const categoryColors: { [key: string]: string } = {
   "Staff Portal": "bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200",
   "Education Platform": "bg-pink-100 text-pink-800 dark:bg-pink-900/30 dark:text-pink-300",
   "Developer Tool": "bg-cyan-100 text-cyan-800 dark:bg-cyan-900/30 dark:text-cyan-300",
-  "Business Tool": "bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-300"
+  "Business Tool": "bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-300",
+  "Document Tool": "bg-indigo-100 text-indigo-800 dark:bg-indigo-900/30 dark:text-indigo-300"
 };
 
 export default function ProjectsPage() {
@@ -259,7 +277,7 @@ export default function ProjectsPage() {
               </p>
               <div className="grid md:grid-cols-3 gap-8 mt-12">
                 <div className="text-center">
-                  <div className="text-4xl font-bold text-[#C5A059] mb-2">11</div>
+                  <div className="text-4xl font-bold text-[#C5A059] mb-2">12</div>
                   <p className="text-muted-foreground">TOMO Products</p>
                 </div>
                 <div className="text-center">
