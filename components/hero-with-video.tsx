@@ -97,7 +97,7 @@ const NavbarHero: React.FC<NavbarHeroProps> = ({
                   </button>
                   {openDropdown === 'desktop-resources' && (
                     <ul className="absolute top-full left-0 mt-2 p-2 bg-card border border-border shadow-lg rounded-xl z-20 w-48">
-                      <li><a href="#" className="block px-3 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg">Documentation</a></li>
+                      <li><a href="/resources/documentation" className="block px-3 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg">Documentation</a></li>
                       <li><a href="#" className="block px-3 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg">API Reference</a></li>
                     </ul>
                   )}
@@ -128,7 +128,7 @@ const NavbarHero: React.FC<NavbarHeroProps> = ({
                       Resources<ChevronDown className={`h-4 w-4 transition-transform ${openDropdown === 'mobile-resources' ? 'rotate-180' : ''}`} />
                   </button>
                   {openDropdown === 'mobile-resources' && (<ul className="ml-4 mt-1 border-l border-border pl-3">
-                      <li><a href="#" className="block px-3 py-1.5 text-sm text-muted-foreground hover:bg-muted hover:text-foreground rounded-lg">Documentation</a></li>
+                      <li><a href="/resources/documentation" className="block px-3 py-1.5 text-sm text-muted-foreground hover:bg-muted hover:text-foreground rounded-lg">Documentation</a></li>
                       <li><a href="#" className="block px-3 py-1.5 text-sm text-muted-foreground hover:bg-muted hover:text-foreground rounded-lg">API Reference</a></li>
                   </ul>)}</li>
                   <li><a href="/blog" className="block px-3 py-2 text-sm text-foreground hover:bg-muted rounded-lg">Blog</a></li>

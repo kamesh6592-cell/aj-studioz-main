@@ -17,7 +17,7 @@ function StackedCircularFooter() {
             <a href="#" className="hover:text-primary">Home</a>
             <a href="#" className="hover:text-primary">Features</a>
             <a href="/pricing" className="hover:text-primary">Pricing</a>
-            <a href="#" className="hover:text-primary">Documentation</a>
+            <a href="/resources/documentation" className="hover:text-primary">Documentation</a>
             <a href="#" className="hover:text-primary">Support</a>
           </nav>
           <div className="mb-8 flex space-x-4">
