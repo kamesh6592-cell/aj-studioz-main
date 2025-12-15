@@ -1,5 +1,7 @@
-import { CodeBlock } from '@/components/codeblocks/code-block';
-import { PricingCard } from '@/components/pricing/pricing-card';
+"use client";
+
+import { CodeBlock } from '@/components/ui/code-block';
+import PricingCard from '@/components/pricing/pricing-card';
 import { Toaster } from '@/components/ui/toaster';
 import { ThemeToggle } from '@/components/ui/theme-toggle';
 import { INDIVIDUAL_PLANS, BUSINESS_PLANS } from '@/components/pricing/constants';

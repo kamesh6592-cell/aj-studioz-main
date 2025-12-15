@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect, useState, useRef } from 'react';
 import { PricingPlan } from './types';
 import FeatureItem from './feature-item';
