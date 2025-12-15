@@ -7,12 +7,13 @@ import { INDIVIDUAL_PLANS } from '@/components/pricing/constants';
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Download, Terminal, Code, Package, Sparkles, BookOpen, Zap, Settings, FileText, ExternalLink, ChevronRight, Home, Book, Copy, Check } from "lucide-react";
+import { Download, Terminal, Code, Package, Sparkles, BookOpen, Zap, Settings, FileText, ExternalLink, ChevronRight, Home, Book, Copy, Check, Menu, X } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 
 export default function DocumentationPage() {
   const [activeSection, setActiveSection] = useState("overview");
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   // Navigation items
   const navItems = [
@@ -59,20 +60,56 @@ export default function MyPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Mobile Header */}
+      {/* Mobile Header with Navigation */}
       <div className="md:hidden bg-background border-b border-border p-4">
-        <div className="flex items-center gap-2">
-          <div className="h-8 w-8 bg-primary rounded-lg flex items-center justify-center">
-            <Sparkles className="h-4 w-4 text-primary-foreground" />
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <div className="h-8 w-8 bg-primary rounded-lg flex items-center justify-center">
+              <Sparkles className="h-4 w-4 text-primary-foreground" />
+            </div>
+            <div>
+              <div className="font-semibold text-sm">AJ STUDIOZ</div>
+              <div className="text-xs text-muted-foreground">Components</div>
+            </div>
           </div>
-          <div>
-            <div className="font-semibold text-sm">AJ STUDIOZ</div>
-            <div className="text-xs text-muted-foreground">Components</div>
-          </div>
+          <button 
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="p-2 hover:bg-muted rounded-lg transition-colors"
+          >
+            {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
         </div>
       </div>
 
-      <div className="flex h-screen">
+      {/* Mobile Navigation Menu */}
+      {mobileMenuOpen && (
+        <div className="md:hidden bg-background border-b border-border">
+          <div className="p-4 space-y-1">
+            {navItems.map((item) => {
+              const Icon = item.icon;
+              return (
+                <button
+                  key={item.id}
+                  onClick={() => {
+                    setActiveSection(item.id);
+                    setMobileMenuOpen(false);
+                  }}
+                  className={`w-full flex items-center gap-3 px-3 py-3 text-sm rounded-lg transition-colors ${
+                    activeSection === item.id
+                      ? 'bg-primary text-primary-foreground'
+                      : 'hover:bg-muted text-muted-foreground hover:text-foreground'
+                  }`}
+                >
+                  <Icon className="h-4 w-4" />
+                  {item.label}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
+      <div className="flex h-[calc(100vh-73px)] md:h-screen">
         {/* Left Sidebar */}
         <div className="hidden md:block w-64 border-r border-border bg-card/50">
           <div className="p-6 border-b border-border">
@@ -113,8 +150,8 @@ export default function MyPage() {
         {/* Main Content - 3 Column Layout with In-Page Navigation */}
         <div className="flex-1 flex">
           <div className="flex-1">
-            <ScrollArea className="h-screen">
-              <div className="max-w-4xl mx-auto p-4 md:p-8">
+            <ScrollArea className="h-full">
+              <div className="max-w-4xl mx-auto p-4 md:p-6 lg:p-8">
                 {/* Overview Section */}
                 {activeSection === "overview" && (
                   <div className="space-y-8">
@@ -123,9 +160,9 @@ export default function MyPage() {
                         <div className="h-10 w-10 bg-primary rounded-lg flex items-center justify-center">
                           <Sparkles className="h-5 w-5 text-primary-foreground" />
                         </div>
-                        <h1 className="text-2xl md:text-3xl font-bold">AJ STUDIOZ Components</h1>
+                        <h1 className="text-xl md:text-2xl lg:text-3xl font-bold">AJ STUDIOZ Components</h1>
                       </div>
-                      <p className="text-base md:text-lg text-muted-foreground mb-6">
+                      <p className="text-sm md:text-base lg:text-lg text-muted-foreground mb-6">
                         Professional React components with premium styling. Install instantly via NPX CLI for Next.js and React/Vite projects.
                       </p>
                       {/* Inline Navigation */}
@@ -186,7 +223,7 @@ npx @ajstudioz14151/pricing-component@1.2.0 add`}
                         <div className="h-10 w-10 bg-primary rounded-lg flex items-center justify-center">
                           <Download className="h-5 w-5 text-primary-foreground" />
                         </div>
-                        <h1 className="text-2xl md:text-3xl font-bold">Installation</h1>
+                        <h1 className="text-xl md:text-2xl lg:text-3xl font-bold">Installation</h1>
                       </div>
                       <p className="text-muted-foreground mb-6">
                         Install AJ STUDIOZ components using our NPX CLI with automatic project detection.
@@ -263,7 +300,7 @@ npx @ajstudioz14151/pricing-component@1.2.0 add`}
                         <div className="h-10 w-10 bg-primary rounded-lg flex items-center justify-center">
                           <Code className="h-5 w-5 text-primary-foreground" />
                         </div>
-                        <h1 className="text-2xl md:text-3xl font-bold">Code Blocks Component</h1>
+                        <h1 className="text-xl md:text-2xl lg:text-3xl font-bold">Code Blocks Component</h1>
                       </div>
                       <p className="text-muted-foreground mb-6">
                         Syntax-highlighted code blocks with copy functionality and theme support.
@@ -343,7 +380,7 @@ print(f"Fibonacci sequence: {result}")`}
                         <div className="h-10 w-10 bg-primary rounded-lg flex items-center justify-center">
                           <Package className="h-5 w-5 text-primary-foreground" />
                         </div>
-                        <h1 className="text-2xl md:text-3xl font-bold">Pricing Cards Component</h1>
+                        <h1 className="text-xl md:text-2xl lg:text-3xl font-bold">Pricing Cards Component</h1>
                       </div>
                       <p className="text-muted-foreground mb-6">
                         Beautiful pricing cards with premium styling and customizable plans.
@@ -391,7 +428,7 @@ print(f"Fibonacci sequence: {result}")`}
                         <div className="h-10 w-10 bg-primary rounded-lg flex items-center justify-center">
                           <FileText className="h-5 w-5 text-primary-foreground" />
                         </div>
-                        <h1 className="text-2xl md:text-3xl font-bold">Usage Guide</h1>
+                        <h1 className="text-xl md:text-2xl lg:text-3xl font-bold">Usage Guide</h1>
                       </div>
                       <p className="text-muted-foreground mb-6">
                         Learn how to use AJ STUDIOZ components in your projects.
@@ -465,7 +502,7 @@ export default function PricingPage() {
                         <div className="h-10 w-10 bg-primary rounded-lg flex items-center justify-center">
                           <Zap className="h-5 w-5 text-primary-foreground" />
                         </div>
-                        <h1 className="text-2xl md:text-3xl font-bold">Examples</h1>
+                        <h1 className="text-xl md:text-2xl lg:text-3xl font-bold">Examples</h1>
                       </div>
                       <p className="text-muted-foreground mb-6">
                         Real-world examples of using AJ STUDIOZ components.
@@ -545,7 +582,7 @@ const users = await response.json();
 
           {/* In-Page Navigation - Right Sidebar */}
           <div className="hidden lg:block w-80 bg-background">
-            <ScrollArea className="h-screen">
+            <ScrollArea className="h-full">
               <div className="p-6">
                 {/* Overview Page Navigation */}
                 {activeSection === "overview" && (
