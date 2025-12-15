@@ -18,6 +18,12 @@ export const metadata: Metadata = {
   description: "Smart conversations, smarter solutions by AJ STUDIOZ Technologies",
 };
 
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{

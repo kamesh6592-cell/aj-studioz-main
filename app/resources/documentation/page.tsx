@@ -60,10 +60,10 @@ export default function MyPage() {
 }`;
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background overflow-x-hidden">
       {/* Mobile Header with Navigation */}
-      <div className="md:hidden bg-background border-b border-border p-3 sticky top-0 z-50">
-        <div className="flex items-center justify-between">
+      <div className="md:hidden bg-background border-b border-border p-3 sticky top-0 z-50 w-full overflow-hidden">
+        <div className="flex items-center justify-between w-full">
           <div className="flex items-center gap-3">
             <div className="h-8 w-8 flex items-center justify-center">
               <Image src="/AJ.svg" alt="AJ STUDIOZ" width={32} height={32} className="w-8 h-8" />
@@ -84,8 +84,8 @@ export default function MyPage() {
 
       {/* Mobile Navigation Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-background border-b border-border sticky top-[61px] z-40">
-          <div className="p-3 space-y-1 max-h-[50vh] overflow-y-auto">
+        <div className="md:hidden bg-background border-b border-border sticky top-[61px] z-40 w-full overflow-hidden">
+          <div className="p-3 space-y-1 max-h-[50vh] overflow-y-auto w-full">
             {navItems.map((item) => {
               const Icon = item.icon;
               return (
@@ -110,9 +110,9 @@ export default function MyPage() {
         </div>
       )}
 
-      <div className="flex h-[calc(100vh-61px)] md:h-screen">
+      <div className="flex h-[calc(100vh-61px)] md:h-screen overflow-hidden">
         {/* Left Sidebar */}
-        <div className="hidden md:block w-64 border-r border-border bg-card/50">
+        <div className="hidden md:block w-64 border-r border-border bg-card/50 flex-shrink-0">
           <div className="p-6 border-b border-border">
             <Link href="/resources/documentation" className="flex items-center gap-3">
               <div className="h-8 w-8 flex items-center justify-center">
@@ -149,28 +149,28 @@ export default function MyPage() {
         </div>
 
         {/* Main Content - 3 Column Layout with In-Page Navigation */}
-        <div className="flex-1 flex overflow-hidden">
-          <div className="flex-1 overflow-hidden">
+        <div className="flex-1 flex overflow-hidden min-w-0">
+          <div className="flex-1 overflow-hidden min-w-0">
             <ScrollArea className="h-full">
-              <div className="max-w-4xl mx-auto p-3 md:p-6 lg:p-8">
+              <div className="w-full px-3 py-3 md:px-6 md:py-6 lg:px-8 lg:py-8 max-w-full overflow-x-hidden">
                 {/* Overview Section */}
                 {activeSection === "overview" && (
-                  <div className="space-y-8">
+                  <div className="space-y-6 md:space-y-8 w-full min-w-0">
                     <div>
-                      <div className="flex items-center gap-3 mb-4">
-                        <div className="h-10 w-10 flex items-center justify-center">
-                          <Image src="/AJ.svg" alt="AJ STUDIOZ" width={40} height={40} className="w-10 h-10" />
+                      <div className="flex items-center gap-2 md:gap-3 mb-4 w-full overflow-hidden">
+                        <div className="h-8 w-8 md:h-10 md:w-10 flex items-center justify-center flex-shrink-0">
+                          <Image src="/AJ.svg" alt="AJ STUDIOZ" width={32} height={32} className="w-8 h-8 md:w-10 md:h-10" />
                         </div>
-                        <h1 className="text-xl md:text-2xl lg:text-3xl font-bold">AJ STUDIOZ Components</h1>
+                        <h1 className="text-lg md:text-2xl lg:text-3xl font-bold truncate">AJ STUDIOZ Components</h1>
                       </div>
-                      <p className="text-sm md:text-base lg:text-lg text-muted-foreground mb-4 md:mb-6">
+                      <p className="text-sm md:text-base lg:text-lg text-muted-foreground mb-4 md:mb-6 leading-relaxed">
                         Professional React components with premium styling. Install instantly via NPX CLI for Next.js and React/Vite projects.
                       </p>
                       {/* Inline Navigation */}
-                      <div className="flex flex-wrap items-center gap-2 mb-4 md:mb-6">
-                        <Badge variant="outline" className="cursor-pointer hover:bg-muted">Installation</Badge>
-                        <Badge variant="outline" className="cursor-pointer hover:bg-muted">Features</Badge>
-                        <Badge variant="outline" className="cursor-pointer hover:bg-muted">Examples</Badge>
+                      <div className="flex flex-wrap items-center gap-1 md:gap-2 mb-4 md:mb-6 w-full overflow-hidden">
+                        <Badge variant="outline" className="cursor-pointer hover:bg-muted text-xs md:text-sm px-2 py-1">Installation</Badge>
+                        <Badge variant="outline" className="cursor-pointer hover:bg-muted text-xs md:text-sm px-2 py-1">Features</Badge>
+                        <Badge variant="outline" className="cursor-pointer hover:bg-muted text-xs md:text-sm px-2 py-1">Examples</Badge>
                       </div>
                     </div>
 
@@ -191,22 +191,22 @@ npx @ajstudioz14151/pricing-component@1.2.0 add`}
 
                       <div>
                         <h2 className="text-xl font-semibold mb-4">Features</h2>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
-                          <div className="p-3 md:p-4 rounded-lg border border-border bg-card/30">
-                            <div className="flex items-center gap-2 mb-2">
-                              <Zap className="h-4 w-4 md:h-5 md:w-5 text-primary" />
-                              <h3 className="font-medium text-sm md:text-base">Instant Installation</h3>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4 w-full">
+                          <div className="p-3 md:p-4 rounded-lg border border-border bg-card/30 w-full min-w-0">
+                            <div className="flex items-center gap-2 mb-2 w-full">
+                              <Zap className="h-4 w-4 md:h-5 md:w-5 text-primary flex-shrink-0" />
+                              <h3 className="font-medium text-sm md:text-base truncate">Instant Installation</h3>
                             </div>
-                            <p className="text-xs md:text-sm text-muted-foreground">
+                            <p className="text-xs md:text-sm text-muted-foreground leading-relaxed">
                               NPX CLI with automatic project detection and dependency management.
                             </p>
                           </div>
-                          <div className="p-3 md:p-4 rounded-lg border border-border bg-card/30">
-                            <div className="flex items-center gap-2 mb-2">
-                              <Sparkles className="h-4 w-4 md:h-5 md:w-5 text-primary" />
-                              <h3 className="font-medium text-sm md:text-base">Premium Design</h3>
+                          <div className="p-3 md:p-4 rounded-lg border border-border bg-card/30 w-full min-w-0">
+                            <div className="flex items-center gap-2 mb-2 w-full">
+                              <Sparkles className="h-4 w-4 md:h-5 md:w-5 text-primary flex-shrink-0" />
+                              <h3 className="font-medium text-sm md:text-base truncate">Premium Design</h3>
                             </div>
-                            <p className="text-xs md:text-sm text-muted-foreground">
+                            <p className="text-xs md:text-sm text-muted-foreground leading-relaxed">
                               Professional styling with dark mode support and customizable themes.
                             </p>
                           </div>
@@ -218,13 +218,13 @@ npx @ajstudioz14151/pricing-component@1.2.0 add`}
 
                 {/* Installation Section */}
                 {activeSection === "installation" && (
-                  <div className="space-y-8">
+                  <div className="space-y-6 md:space-y-8 w-full min-w-0">
                     <div>
-                      <div className="flex items-center gap-3 mb-4">
-                        <div className="h-10 w-10 flex items-center justify-center">
-                          <Image src="/AJ.svg" alt="AJ STUDIOZ" width={40} height={40} className="w-10 h-10" />
+                      <div className="flex items-center gap-2 md:gap-3 mb-4 w-full overflow-hidden">
+                        <div className="h-8 w-8 md:h-10 md:w-10 flex items-center justify-center flex-shrink-0">
+                          <Image src="/AJ.svg" alt="AJ STUDIOZ" width={32} height={32} className="w-8 h-8 md:w-10 md:h-10" />
                         </div>
-                        <h1 className="text-xl md:text-2xl lg:text-3xl font-bold">Installation</h1>
+                        <h1 className="text-lg md:text-2xl lg:text-3xl font-bold truncate">Installation</h1>
                       </div>
                       <p className="text-muted-foreground mb-6">
                         Install AJ STUDIOZ components using our NPX CLI with automatic project detection.
@@ -236,10 +236,10 @@ npx @ajstudioz14151/pricing-component@1.2.0 add`}
                         <h2 className="text-xl font-semibold mb-4">Step 1: Choose Your Component</h2>
                         <p className="text-muted-foreground mb-4">Select from our available components:</p>
                         
-                        <div className="space-y-3 md:space-y-4">
-                          <div className="p-3 md:p-4 rounded-lg border border-border bg-card/30">
+                        <div className="space-y-3 md:space-y-4 w-full">
+                          <div className="p-3 md:p-4 rounded-lg border border-border bg-card/30 w-full min-w-0">
                             <h3 className="font-medium mb-2 text-sm md:text-base">Code Blocks Component</h3>
-                            <p className="text-xs md:text-sm text-muted-foreground mb-3">
+                            <p className="text-xs md:text-sm text-muted-foreground mb-3 leading-relaxed">
                               Syntax-highlighted code blocks with copy functionality
                             </p>
                             <CodeBlock language="bash" elementKey="install-codeblocks">
@@ -247,9 +247,9 @@ npx @ajstudioz14151/pricing-component@1.2.0 add`}
                             </CodeBlock>
                           </div>
 
-                          <div className="p-3 md:p-4 rounded-lg border border-border bg-card/30">
+                          <div className="p-3 md:p-4 rounded-lg border border-border bg-card/30 w-full min-w-0">
                             <h3 className="font-medium mb-2 text-sm md:text-base">Pricing Cards Component</h3>
-                            <p className="text-xs md:text-sm text-muted-foreground mb-3">
+                            <p className="text-xs md:text-sm text-muted-foreground mb-3 leading-relaxed">
                               Beautiful pricing cards with premium styling
                             </p>
                             <CodeBlock language="bash" elementKey="install-pricing">
@@ -295,13 +295,13 @@ npx @ajstudioz14151/pricing-component@1.2.0 add`}
 
                 {/* Code Blocks Section */}
                 {activeSection === "codeblocks" && (
-                  <div className="space-y-8">
+                  <div className="space-y-6 md:space-y-8 w-full min-w-0">
                     <div>
-                      <div className="flex items-center gap-3 mb-4">
-                        <div className="h-10 w-10 flex items-center justify-center">
-                          <Image src="/AJ.svg" alt="AJ STUDIOZ" width={40} height={40} className="w-10 h-10" />
+                      <div className="flex items-center gap-2 md:gap-3 mb-4 w-full overflow-hidden">
+                        <div className="h-8 w-8 md:h-10 md:w-10 flex items-center justify-center flex-shrink-0">
+                          <Image src="/AJ.svg" alt="AJ STUDIOZ" width={32} height={32} className="w-8 h-8 md:w-10 md:h-10" />
                         </div>
-                        <h1 className="text-xl md:text-2xl lg:text-3xl font-bold">Code Blocks Component</h1>
+                        <h1 className="text-lg md:text-2xl lg:text-3xl font-bold truncate">Code Blocks Component</h1>
                       </div>
                       <p className="text-muted-foreground mb-6">
                         Syntax-highlighted code blocks with copy functionality and theme support.
@@ -375,13 +375,13 @@ print(f"Fibonacci sequence: {result}")`}
 
                 {/* Pricing Section */}
                 {activeSection === "pricing" && (
-                  <div className="space-y-8">
+                  <div className="space-y-6 md:space-y-8 w-full min-w-0">
                     <div>
-                      <div className="flex items-center gap-3 mb-4">
-                        <div className="h-10 w-10 flex items-center justify-center">
-                          <Image src="/AJ.svg" alt="AJ STUDIOZ" width={40} height={40} className="w-10 h-10" />
+                      <div className="flex items-center gap-2 md:gap-3 mb-4 w-full overflow-hidden">
+                        <div className="h-8 w-8 md:h-10 md:w-10 flex items-center justify-center flex-shrink-0">
+                          <Image src="/AJ.svg" alt="AJ STUDIOZ" width={32} height={32} className="w-8 h-8 md:w-10 md:h-10" />
                         </div>
-                        <h1 className="text-xl md:text-2xl lg:text-3xl font-bold">Pricing Cards Component</h1>
+                        <h1 className="text-lg md:text-2xl lg:text-3xl font-bold truncate">Pricing Cards Component</h1>
                       </div>
                       <p className="text-muted-foreground mb-6">
                         Beautiful pricing cards with premium styling and customizable plans.
@@ -411,9 +411,11 @@ print(f"Fibonacci sequence: {result}")`}
 
                       <div>
                         <h2 className="text-xl font-semibold mb-4">Live Preview</h2>
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 md:gap-4 lg:gap-6">
+                        <div className="w-full space-y-3 md:space-y-0 md:grid md:grid-cols-1 lg:grid-cols-2 md:gap-3 lg:gap-6">
                           {INDIVIDUAL_PLANS.slice(0, 2).map(plan => (
-                            <PricingCard key={plan.id} plan={plan} isYearly={false} />
+                            <div key={plan.id} className="w-full min-w-0">
+                              <PricingCard plan={plan} isYearly={false} />
+                            </div>
                           ))}
                         </div>
                       </div>
@@ -423,13 +425,13 @@ print(f"Fibonacci sequence: {result}")`}
 
                 {/* Usage Section */}
                 {activeSection === "usage" && (
-                  <div className="space-y-8">
+                  <div className="space-y-6 md:space-y-8 w-full min-w-0">
                     <div>
-                      <div className="flex items-center gap-3 mb-4">
-                        <div className="h-10 w-10 flex items-center justify-center">
-                          <Image src="/AJ.svg" alt="AJ STUDIOZ" width={40} height={40} className="w-10 h-10" />
+                      <div className="flex items-center gap-2 md:gap-3 mb-4 w-full overflow-hidden">
+                        <div className="h-8 w-8 md:h-10 md:w-10 flex items-center justify-center flex-shrink-0">
+                          <Image src="/AJ.svg" alt="AJ STUDIOZ" width={32} height={32} className="w-8 h-8 md:w-10 md:h-10" />
                         </div>
-                        <h1 className="text-xl md:text-2xl lg:text-3xl font-bold">Usage Guide</h1>
+                        <h1 className="text-lg md:text-2xl lg:text-3xl font-bold truncate">Usage Guide</h1>
                       </div>
                       <p className="text-muted-foreground mb-6">
                         Learn how to use AJ STUDIOZ components in your projects.
@@ -497,13 +499,13 @@ export default function PricingPage() {
 
                 {/* Examples Section */}
                 {activeSection === "examples" && (
-                  <div className="space-y-8">
+                  <div className="space-y-6 md:space-y-8 w-full min-w-0">
                     <div>
-                      <div className="flex items-center gap-3 mb-4">
-                        <div className="h-10 w-10 flex items-center justify-center">
-                          <Image src="/AJ.svg" alt="AJ STUDIOZ" width={40} height={40} className="w-10 h-10" />
+                      <div className="flex items-center gap-2 md:gap-3 mb-4 w-full overflow-hidden">
+                        <div className="h-8 w-8 md:h-10 md:w-10 flex items-center justify-center flex-shrink-0">
+                          <Image src="/AJ.svg" alt="AJ STUDIOZ" width={32} height={32} className="w-8 h-8 md:w-10 md:h-10" />
                         </div>
-                        <h1 className="text-xl md:text-2xl lg:text-3xl font-bold">Examples</h1>
+                        <h1 className="text-lg md:text-2xl lg:text-3xl font-bold truncate">Examples</h1>
                       </div>
                       <p className="text-muted-foreground mb-6">
                         Real-world examples of using AJ STUDIOZ components.
@@ -582,7 +584,7 @@ const users = await response.json();
           </div>
 
           {/* In-Page Navigation - Right Sidebar */}
-          <div className="hidden lg:block w-80 bg-background">
+          <div className="hidden lg:block w-80 bg-background flex-shrink-0">
             <ScrollArea className="h-full">
               <div className="p-6">
                 {/* Overview Page Navigation */}
