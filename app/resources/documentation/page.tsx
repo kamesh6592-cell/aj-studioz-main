@@ -72,7 +72,7 @@ export default function MyPage() {
                   {openDropdown === 'desktop-resources' && (
                     <ul className="absolute top-full left-0 mt-2 p-2 bg-card border border-border shadow-lg rounded-xl z-20 w-48">
                       <li><a href="/resources/documentation" className="block px-3 py-2 text-sm text-blue-600 hover:bg-muted rounded-lg">Documentation</a></li>
-                      <li><a href="#" className="block px-3 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg">API Reference</a></li>
+                      <li><a href="https://aj-studioz-api-documentation.vercel.app/" target="_blank" rel="noopener noreferrer" className="block px-3 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg">API Reference</a></li>
                     </ul>
                   )}
                 </li>
@@ -104,7 +104,7 @@ export default function MyPage() {
                   </button>
                   {openDropdown === 'mobile-resources' && (<ul className="ml-4 mt-1 border-l border-border pl-3">
                       <li><a href="/resources/documentation" className="block px-3 py-1.5 text-sm text-blue-600 hover:bg-muted rounded-lg">Documentation</a></li>
-                      <li><a href="#" className="block px-3 py-1.5 text-sm text-muted-foreground hover:bg-muted hover:text-foreground rounded-lg">API Reference</a></li>
+                      <li><a href="https://aj-studioz-api-documentation.vercel.app/" target="_blank" rel="noopener noreferrer" className="block px-3 py-1.5 text-sm text-muted-foreground hover:bg-muted hover:text-foreground rounded-lg">API Reference</a></li>
                   </ul>)}</li>
                   <li><a href="/blog" className="block px-3 py-2 text-sm text-foreground hover:bg-muted rounded-lg">Blog</a></li>
                   <li><a href="/pricing" className="block px-3 py-2 text-sm text-foreground hover:bg-muted rounded-lg">Plans & Pricing</a></li>
