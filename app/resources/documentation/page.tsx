@@ -1,30 +1,22 @@
-"use client";
+'use client'
 
+import React, { useState } from 'react';
+import { Menu, X, ChevronRight, ChevronDown, ArrowRight } from 'lucide-react';
+import { ToggleTheme } from '../../../components/toggle-theme';
 import { CodeBlock } from '@/components/ui/code-block';
 import PricingCard from '@/components/pricing/pricing-card';
 import { Toaster } from '@/components/ui/toaster';
 import { INDIVIDUAL_PLANS } from '@/components/pricing/constants';
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { Download, Terminal, Code, Package, Sparkles, BookOpen, Zap, Settings, FileText, ExternalLink, ChevronRight, Home, Book, Copy, Check, Menu, X } from "lucide-react";
-import Link from "next/link";
-import Image from "next/image";
-import { useState } from "react";
 
 export default function DocumentationPage() {
-  const [activeSection, setActiveSection] = useState("overview");
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [activeSection, setActiveSection] = useState("getting-started");
 
-  // Navigation items
-  const navItems = [
-    { id: "overview", label: "Overview", icon: BookOpen },
-    { id: "installation", label: "Installation", icon: Download },
-    { id: "codeblocks", label: "Code Blocks", icon: Code },
-    { id: "pricing", label: "Pricing Cards", icon: Package },
-    { id: "usage", label: "Usage", icon: FileText },
-    { id: "examples", label: "Examples", icon: Zap },
-  ];
+  const toggleDropdown = (dropdownName: string) => {
+    setOpenDropdown(openDropdown === dropdownName ? null : dropdownName);
+  };
 
   const installationCode = `# Code Blocks Component
 npx @ajstudioz14151/codeblocks-component@1.1.0 add
@@ -60,156 +52,264 @@ export default function MyPage() {
 }`;
 
   return (
-    <div className="min-h-screen bg-background overflow-x-hidden">
-      {/* Mobile Header with Navigation */}
-      <div className="md:hidden bg-background border-b border-border p-3 sticky top-0 z-50 w-full overflow-hidden">
-        <div className="flex items-center justify-between w-full">
-          <div className="flex items-center gap-3">
-            <div className="h-8 w-8 flex items-center justify-center">
-              <Image src="/AJ.svg" alt="AJ STUDIOZ" width={32} height={32} className="w-8 h-8" />
-            </div>
-            <div>
-              <div className="font-semibold text-sm text-foreground">AJ STUDIOZ</div>
-              <div className="text-xs text-muted-foreground">Components</div>
-            </div>
-          </div>
-          <button 
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 hover:bg-muted rounded-lg transition-colors"
-          >
-            {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile Navigation Menu */}
-      {mobileMenuOpen && (
-        <div className="md:hidden bg-background border-b border-border sticky top-[61px] z-40 w-full overflow-hidden">
-          <div className="p-3 space-y-1 max-h-[50vh] overflow-y-auto w-full">
-            {navItems.map((item) => {
-              const Icon = item.icon;
-              return (
-                <button
-                  key={item.id}
-                  onClick={() => {
-                    setActiveSection(item.id);
-                    setMobileMenuOpen(false);
-                  }}
-                  className={`w-full flex items-center gap-3 px-4 py-3 text-sm rounded-lg transition-colors ${
-                    activeSection === item.id
-                      ? 'bg-primary text-primary-foreground'
-                      : 'hover:bg-muted text-foreground'
-                  }`}
-                >
-                  <Icon className="h-4 w-4 flex-shrink-0" />
-                  <span>{item.label}</span>
-                </button>
-              );
-            })}
-          </div>
-        </div>
-      )}
-
-      <div className="flex h-[calc(100vh-61px)] md:h-screen overflow-hidden">
-        {/* Left Sidebar */}
-        <div className="hidden md:block w-64 border-r border-border bg-card/50 flex-shrink-0">
-          <div className="p-6 border-b border-border">
-            <Link href="/resources/documentation" className="flex items-center gap-3">
-              <div className="h-8 w-8 flex items-center justify-center">
-                <Image src="/AJ.svg" alt="AJ STUDIOZ" width={32} height={32} className="w-8 h-8" />
-              </div>
-              <div>
-                <div className="font-semibold text-sm">AJ STUDIOZ</div>
-                <div className="text-xs text-muted-foreground">Components</div>
-              </div>
-            </Link>
-          </div>
-          
-          <ScrollArea className="h-[calc(100vh-100px)]">
-            <div className="p-4 space-y-2">
-              {navItems.map((item) => {
-                const Icon = item.icon;
-                return (
-                  <button
-                    key={item.id}
-                    onClick={() => setActiveSection(item.id)}
-                    className={`w-full flex items-center gap-3 px-3 py-2 text-sm rounded-lg transition-colors ${
-                      activeSection === item.id
-                        ? 'bg-primary text-primary-foreground'
-                        : 'hover:bg-muted text-muted-foreground hover:text-foreground'
-                    }`}
-                  >
-                    <Icon className="h-4 w-4" />
-                    {item.label}
+    <main className="relative bg-background min-h-screen">
+      <div className="w-full max-w-6xl mx-auto p-4 sm:p-6 lg:p-8">
+        {/* Navbar */}
+        <div className="py-2 relative z-20 flex items-center justify-between gap-4">
+          <div className="flex items-center gap-6">
+            <a href="/" className="font-bold text-2xl pb-1 text-foreground cursor-pointer flex-shrink-0 flex items-center gap-3">
+              <img src="/AJ.svg" alt="AJ STUDIOZ" className="w-8 h-8" />
+              AJ STUDIOZ
+            </a>
+            <nav className="hidden lg:flex text-muted-foreground font-medium">
+              <ul className="flex items-center space-x-2">
+                <li><a href="/about" className="hover:text-foreground px-3 py-2 text-sm transition-colors rounded-lg">About</a></li>
+                <li><a href="/projects" className="hover:text-foreground px-3 py-2 text-sm transition-colors rounded-lg">Projects</a></li>
+                <li className="relative">
+                  <button onClick={() => toggleDropdown('desktop-resources')} className="flex items-center hover:text-foreground px-3 py-2 text-sm transition-colors rounded-lg">
+                    Resources<ChevronDown className={`h-4 w-4 ml-1 transition-transform ${openDropdown === 'desktop-resources' ? 'rotate-180' : ''}`} />
                   </button>
-                );
-              })}
+                  {openDropdown === 'desktop-resources' && (
+                    <ul className="absolute top-full left-0 mt-2 p-2 bg-card border border-border shadow-lg rounded-xl z-20 w-48">
+                      <li><a href="/resources/documentation" className="block px-3 py-2 text-sm text-blue-600 hover:bg-muted rounded-lg">Documentation</a></li>
+                      <li><a href="#" className="block px-3 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg">API Reference</a></li>
+                    </ul>
+                  )}
+                </li>
+                <li><a href="/blog" className="hover:text-foreground px-3 py-2 text-sm transition-colors rounded-lg">Blog</a></li>
+                <li><a href="/pricing" className="hover:text-foreground px-3 py-2 text-sm transition-colors rounded-lg">Plans & Pricing</a></li>
+              </ul>
+            </nav>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <div className="hidden lg:flex items-center gap-3">
+              <a href="/signin" className="text-foreground hover:text-muted-foreground cursor-pointer py-2 px-4 text-sm capitalize font-medium transition-colors rounded-xl">Login</a>
+              <a href="/signup" className="bg-foreground hover:bg-muted-foreground text-background py-2.5 px-5 text-sm rounded-xl capitalize font-medium transition-colors flex items-center gap-2">
+                Get Started<ArrowRight className="h-4 w-4" />
+              </a>
             </div>
-          </ScrollArea>
+            <ToggleTheme />
+            <div className="lg:hidden relative">
+              <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="bg-transparent hover:bg-muted border-none p-2 rounded-xl transition-colors">
+                <Menu className="h-6 w-6" />
+              </button>
+              {isMobileMenuOpen && (
+                <ul className="absolute top-full right-0 mt-2 p-2 shadow-lg bg-card border border-border rounded-xl w-56 z-30">
+                  <li><a href="/" className="block px-3 py-2 text-sm text-foreground hover:bg-muted rounded-lg">Home</a></li>
+                  <li><a href="/about" className="block px-3 py-2 text-sm text-foreground hover:bg-muted rounded-lg">About</a></li>
+                  <li><a href="/projects" className="block px-3 py-2 text-sm text-foreground hover:bg-muted rounded-lg">Projects</a></li>
+                  <li><button onClick={() => toggleDropdown('mobile-resources')} className="w-full flex items-center justify-between px-3 py-2 text-sm text-foreground hover:bg-muted rounded-lg">
+                      Resources<ChevronDown className={`h-4 w-4 transition-transform ${openDropdown === 'mobile-resources' ? 'rotate-180' : ''}`} />
+                  </button>
+                  {openDropdown === 'mobile-resources' && (<ul className="ml-4 mt-1 border-l border-border pl-3">
+                      <li><a href="/resources/documentation" className="block px-3 py-1.5 text-sm text-blue-600 hover:bg-muted rounded-lg">Documentation</a></li>
+                      <li><a href="#" className="block px-3 py-1.5 text-sm text-muted-foreground hover:bg-muted hover:text-foreground rounded-lg">API Reference</a></li>
+                  </ul>)}</li>
+                  <li><a href="/blog" className="block px-3 py-2 text-sm text-foreground hover:bg-muted rounded-lg">Blog</a></li>
+                  <li><a href="/pricing" className="block px-3 py-2 text-sm text-foreground hover:bg-muted rounded-lg">Plans & Pricing</a></li>
+                  <li className="border-t border-border mt-2 pt-2 space-y-2">
+                    <a href="/signin" className="block w-full text-center px-3 py-2 text-sm text-foreground hover:bg-muted rounded-lg">Login</a>
+                    <a href="/signup" className="w-full bg-foreground text-background hover:bg-muted-foreground px-3 py-2.5 text-sm rounded-lg flex items-center justify-center gap-2 font-medium">
+                      Get Started<ArrowRight className="h-4 w-4" />
+                    </a>
+                  </li>
+                </ul>
+              )}
+            </div>
+          </div>
         </div>
 
-        {/* Main Content - 3 Column Layout with In-Page Navigation */}
-        <div className="flex-1 flex overflow-hidden min-w-0">
-          <div className="flex-1 overflow-hidden min-w-0">
-            <ScrollArea className="h-full">
-              <div className="w-full px-3 py-3 md:px-6 md:py-6 lg:px-8 lg:py-8 max-w-full overflow-x-hidden">
-                {/* Overview Section */}
-                {activeSection === "overview" && (
-                  <div className="space-y-6 md:space-y-8 w-full min-w-0">
+        {/* Documentation Content */}
+        <div className="pt-4 pb-10 sm:pt-6 sm:pb-12">
+          {/* Page Header */}
+          <div className="text-center mb-8 sm:mb-12">
+            <h1 className="text-3xl sm:text-5xl md:text-5xl text-foreground font-bold tracking-tight mb-4">Documentation</h1>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">Learn how to integrate and use our platform effectively with comprehensive guides and examples.</p>
+          </div>
+
+          {/* Two-Column Layout */}
+          <div className="flex flex-col lg:flex-row gap-8">
+            {/* Left Column - Navigation */}
+            <div className="lg:w-80 lg:flex-shrink-0">
+              {/* Mobile Navigation Toggle */}
+              <div className="lg:hidden mb-6">
+                <button 
+                  onClick={() => toggleDropdown('doc-nav')} 
+                  className="w-full flex items-center justify-between px-4 py-3 bg-muted rounded-lg text-sm font-medium"
+                >
+                  Navigate Documentation
+                  <ChevronDown className={`h-4 w-4 transition-transform ${openDropdown === 'doc-nav' ? 'rotate-180' : ''}`} />
+                </button>
+              </div>
+              
+              {/* Navigation Links */}
+              <nav className={`space-y-2 ${openDropdown === 'doc-nav' ? 'block' : 'hidden'} lg:block`}>
+                <div className="bg-muted/50 rounded-lg p-4">
+                  <h3 className="text-sm font-semibold text-foreground mb-3">Quick Start</h3>
+                  <div className="space-y-1">
+                    <button 
+                      onClick={() => setActiveSection('getting-started')}
+                      className={`block w-full text-left px-3 py-2 text-sm rounded-lg transition-colors ${
+                        activeSection === 'getting-started' 
+                          ? 'text-blue-600 bg-blue-50 dark:bg-blue-950/50' 
+                          : 'text-muted-foreground hover:text-foreground hover:bg-muted'
+                      }`}
+                    >
+                      Getting Started
+                    </button>
+                    <button 
+                      onClick={() => setActiveSection('installation')}
+                      className={`block w-full text-left px-3 py-2 text-sm rounded-lg transition-colors ${
+                        activeSection === 'installation' 
+                          ? 'text-blue-600 bg-blue-50 dark:bg-blue-950/50' 
+                          : 'text-muted-foreground hover:text-foreground hover:bg-muted'
+                      }`}
+                    >
+                      Installation
+                    </button>
+                    <button 
+                      onClick={() => setActiveSection('configuration')}
+                      className={`block w-full text-left px-3 py-2 text-sm rounded-lg transition-colors ${
+                        activeSection === 'configuration' 
+                          ? 'text-blue-600 bg-blue-50 dark:bg-blue-950/50' 
+                          : 'text-muted-foreground hover:text-foreground hover:bg-muted'
+                      }`}
+                    >
+                      Configuration
+                    </button>
+                  </div>
+                </div>
+                <div className="bg-muted/50 rounded-lg p-4">
+                  <h3 className="text-sm font-semibold text-foreground mb-3">Components</h3>
+                  <div className="space-y-1">
+                    <button 
+                      onClick={() => setActiveSection('codeblocks')}
+                      className={`block w-full text-left px-3 py-2 text-sm rounded-lg transition-colors ${
+                        activeSection === 'codeblocks' 
+                          ? 'text-blue-600 bg-blue-50 dark:bg-blue-950/50' 
+                          : 'text-muted-foreground hover:text-foreground hover:bg-muted'
+                      }`}
+                    >
+                      Code Blocks
+                    </button>
+                    <button 
+                      onClick={() => setActiveSection('pricing')}
+                      className={`block w-full text-left px-3 py-2 text-sm rounded-lg transition-colors ${
+                        activeSection === 'pricing' 
+                          ? 'text-blue-600 bg-blue-50 dark:bg-blue-950/50' 
+                          : 'text-muted-foreground hover:text-foreground hover:bg-muted'
+                      }`}
+                    >
+                      Pricing Cards
+                    </button>
+                    <button 
+                      onClick={() => setActiveSection('examples')}
+                      className={`block w-full text-left px-3 py-2 text-sm rounded-lg transition-colors ${
+                        activeSection === 'examples' 
+                          ? 'text-blue-600 bg-blue-50 dark:bg-blue-950/50' 
+                          : 'text-muted-foreground hover:text-foreground hover:bg-muted'
+                      }`}
+                    >
+                      Examples
+                    </button>
+                  </div>
+                </div>
+              </nav>
+
+              {/* Right Column - In-page Navigation (Desktop Only) */}
+              <div className="hidden xl:block mt-8 bg-muted/30 rounded-lg p-4">
+                <h3 className="text-sm font-semibold text-foreground mb-3">On this page</h3>
+                <nav className="space-y-1">
+                  {activeSection === 'getting-started' && (
+                    <>
+                      <div className="text-xs text-blue-600 font-medium py-1">Overview</div>
+                      <div className="text-xs text-muted-foreground hover:text-foreground cursor-pointer py-1 pl-2">Quick Start</div>
+                      <div className="text-xs text-muted-foreground hover:text-foreground cursor-pointer py-1 pl-2">Features</div>
+                    </>
+                  )}
+                  {activeSection === 'installation' && (
+                    <>
+                      <div className="text-xs text-blue-600 font-medium py-1">Installation Steps</div>
+                      <div className="text-xs text-muted-foreground hover:text-foreground cursor-pointer py-1 pl-2">Choose Component</div>
+                      <div className="text-xs text-muted-foreground hover:text-foreground cursor-pointer py-1 pl-2">Run Command</div>
+                      <div className="text-xs text-muted-foreground hover:text-foreground cursor-pointer py-1 pl-2">Verification</div>
+                    </>
+                  )}
+                  {activeSection === 'codeblocks' && (
+                    <>
+                      <div className="text-xs text-blue-600 font-medium py-1">Code Blocks</div>
+                      <div className="text-xs text-muted-foreground hover:text-foreground cursor-pointer py-1 pl-2">Installation</div>
+                      <div className="text-xs text-muted-foreground hover:text-foreground cursor-pointer py-1 pl-2">Usage</div>
+                      <div className="text-xs text-muted-foreground hover:text-foreground cursor-pointer py-1 pl-2">Examples</div>
+                    </>
+                  )}
+                  {activeSection === 'pricing' && (
+                    <>
+                      <div className="text-xs text-blue-600 font-medium py-1">Pricing Cards</div>
+                      <div className="text-xs text-muted-foreground hover:text-foreground cursor-pointer py-1 pl-2">Installation</div>
+                      <div className="text-xs text-muted-foreground hover:text-foreground cursor-pointer py-1 pl-2">Usage</div>
+                      <div className="text-xs text-muted-foreground hover:text-foreground cursor-pointer py-1 pl-2">Live Preview</div>
+                    </>
+                  )}
+                </nav>
+              </div>
+            </div>
+
+            {/* Right Column - Main Content */}
+            <div className="flex-1 min-w-0">
+              <div className="prose prose-gray dark:prose-invert max-w-none">
+                {/* Getting Started Section */}
+                {activeSection === 'getting-started' && (
+                  <div className="space-y-8">
                     <div>
-                      <div className="flex items-center gap-2 md:gap-3 mb-4 w-full overflow-hidden">
-                        <div className="h-8 w-8 md:h-10 md:w-10 flex items-center justify-center flex-shrink-0">
-                          <Image src="/AJ.svg" alt="AJ STUDIOZ" width={32} height={32} className="w-8 h-8 md:w-10 md:h-10" />
-                        </div>
-                        <h1 className="text-lg md:text-2xl lg:text-3xl font-bold truncate">AJ STUDIOZ Components</h1>
+                      <div className="flex items-center gap-3 mb-6">
+                        <img src="/AJ.svg" alt="AJ STUDIOZ" className="w-10 h-10" />
+                        <h1 className="text-3xl font-bold">AJ STUDIOZ Components</h1>
                       </div>
-                      <p className="text-sm md:text-base lg:text-lg text-muted-foreground mb-4 md:mb-6 leading-relaxed">
+                      <p className="text-lg text-muted-foreground leading-relaxed">
                         Professional React components with premium styling. Install instantly via NPX CLI for Next.js and React/Vite projects.
                       </p>
+                      
                       {/* Inline Navigation */}
-                      <div className="flex flex-wrap items-center gap-1 md:gap-2 mb-4 md:mb-6 w-full overflow-hidden">
-                        <Badge variant="outline" className="cursor-pointer hover:bg-muted text-xs md:text-sm px-2 py-1">Installation</Badge>
-                        <Badge variant="outline" className="cursor-pointer hover:bg-muted text-xs md:text-sm px-2 py-1">Features</Badge>
-                        <Badge variant="outline" className="cursor-pointer hover:bg-muted text-xs md:text-sm px-2 py-1">Examples</Badge>
+                      <div className="flex flex-wrap items-center gap-2 mt-6 mb-8">
+                        <Badge variant="default">Overview</Badge>
+                        <Badge variant="outline" className="cursor-pointer hover:bg-muted" onClick={() => setActiveSection('installation')}>Installation</Badge>
+                        <Badge variant="outline" className="cursor-pointer hover:bg-muted" onClick={() => setActiveSection('codeblocks')}>Components</Badge>
+                        <Badge variant="outline" className="cursor-pointer hover:bg-muted" onClick={() => setActiveSection('examples')}>Examples</Badge>
                       </div>
                     </div>
 
-                    <div className="space-y-6">
-                      <div>
-                        <h2 className="text-xl font-semibold mb-4">Quick Start</h2>
-                        <p className="text-muted-foreground mb-4">
-                          Get started with AJ STUDIOZ components in seconds. Our CLI automatically detects your project type and installs the right dependencies.
-                        </p>
-                        <CodeBlock language="bash" elementKey="quick-start">
-                          {`# Install any component with a single command
-npx @ajstudioz14151/codeblocks-component@1.1.0 add
+                    <div>
+                      <h2 className="text-2xl font-semibold mb-4">Quick Start</h2>
+                      <p className="text-muted-foreground mb-6">
+                        Get started with AJ STUDIOZ components in seconds. Our CLI automatically detects your project type and installs the right dependencies.
+                      </p>
+                      <CodeBlock language="bash" elementKey="quick-start">
+                        {installationCode}
+                      </CodeBlock>
+                    </div>
 
-# Or try our pricing cards
-npx @ajstudioz14151/pricing-component@1.2.0 add`}
-                        </CodeBlock>
-                      </div>
-
-                      <div>
-                        <h2 className="text-xl font-semibold mb-4">Features</h2>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4 w-full">
-                          <div className="p-3 md:p-4 rounded-lg border border-border bg-card/30 w-full min-w-0">
-                            <div className="flex items-center gap-2 mb-2 w-full">
-                              <Zap className="h-4 w-4 md:h-5 md:w-5 text-primary flex-shrink-0" />
-                              <h3 className="font-medium text-sm md:text-base truncate">Instant Installation</h3>
-                            </div>
-                            <p className="text-xs md:text-sm text-muted-foreground leading-relaxed">
-                              NPX CLI with automatic project detection and dependency management.
-                            </p>
-                          </div>
-                          <div className="p-3 md:p-4 rounded-lg border border-border bg-card/30 w-full min-w-0">
-                            <div className="flex items-center gap-2 mb-2 w-full">
-                              <Sparkles className="h-4 w-4 md:h-5 md:w-5 text-primary flex-shrink-0" />
-                              <h3 className="font-medium text-sm md:text-base truncate">Premium Design</h3>
-                            </div>
-                            <p className="text-xs md:text-sm text-muted-foreground leading-relaxed">
-                              Professional styling with dark mode support and customizable themes.
-                            </p>
-                          </div>
+                    <div>
+                      <h2 className="text-2xl font-semibold mb-6">Features</h2>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="p-6 rounded-lg border border-border bg-card/30">
+                          <h3 className="font-medium mb-3 flex items-center gap-2">
+                            <span className="w-2 h-2 bg-blue-600 rounded-full"></span>
+                            Instant Installation
+                          </h3>
+                          <p className="text-sm text-muted-foreground leading-relaxed">
+                            NPX CLI with automatic project detection and dependency management.
+                          </p>
+                        </div>
+                        <div className="p-6 rounded-lg border border-border bg-card/30">
+                          <h3 className="font-medium mb-3 flex items-center gap-2">
+                            <span className="w-2 h-2 bg-green-600 rounded-full"></span>
+                            Premium Design
+                          </h3>
+                          <p className="text-sm text-muted-foreground leading-relaxed">
+                            Professional styling with dark mode support and customizable themes.
+                          </p>
                         </div>
                       </div>
                     </div>
@@ -217,75 +317,70 @@ npx @ajstudioz14151/pricing-component@1.2.0 add`}
                 )}
 
                 {/* Installation Section */}
-                {activeSection === "installation" && (
-                  <div className="space-y-6 md:space-y-8 w-full min-w-0">
+                {activeSection === 'installation' && (
+                  <div className="space-y-8">
                     <div>
-                      <div className="flex items-center gap-2 md:gap-3 mb-4 w-full overflow-hidden">
-                        <div className="h-8 w-8 md:h-10 md:w-10 flex items-center justify-center flex-shrink-0">
-                          <Image src="/AJ.svg" alt="AJ STUDIOZ" width={32} height={32} className="w-8 h-8 md:w-10 md:h-10" />
-                        </div>
-                        <h1 className="text-lg md:text-2xl lg:text-3xl font-bold truncate">Installation</h1>
+                      <div className="flex items-center gap-3 mb-6">
+                        <img src="/AJ.svg" alt="AJ STUDIOZ" className="w-10 h-10" />
+                        <h1 className="text-3xl font-bold">Installation</h1>
                       </div>
-                      <p className="text-muted-foreground mb-6">
+                      <p className="text-lg text-muted-foreground leading-relaxed">
                         Install AJ STUDIOZ components using our NPX CLI with automatic project detection.
                       </p>
                     </div>
 
-                    <div className="space-y-6">
-                      <div>
-                        <h2 className="text-xl font-semibold mb-4">Step 1: Choose Your Component</h2>
-                        <p className="text-muted-foreground mb-4">Select from our available components:</p>
-                        
-                        <div className="space-y-3 md:space-y-4 w-full">
-                          <div className="p-3 md:p-4 rounded-lg border border-border bg-card/30 w-full min-w-0">
-                            <h3 className="font-medium mb-2 text-sm md:text-base">Code Blocks Component</h3>
-                            <p className="text-xs md:text-sm text-muted-foreground mb-3 leading-relaxed">
-                              Syntax-highlighted code blocks with copy functionality
-                            </p>
-                            <CodeBlock language="bash" elementKey="install-codeblocks">
-                              {`npx @ajstudioz14151/codeblocks-component@1.1.0 add`}
-                            </CodeBlock>
-                          </div>
+                    <div>
+                      <h2 className="text-2xl font-semibold mb-6">Step 1: Choose Your Component</h2>
+                      
+                      <div className="space-y-6">
+                        <div className="p-6 rounded-lg border border-border bg-card/30">
+                          <h3 className="font-medium mb-3">Code Blocks Component</h3>
+                          <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
+                            Syntax-highlighted code blocks with copy functionality
+                          </p>
+                          <CodeBlock language="bash" elementKey="install-codeblocks">
+                            {`npx @ajstudioz14151/codeblocks-component@1.1.0 add`}
+                          </CodeBlock>
+                        </div>
 
-                          <div className="p-3 md:p-4 rounded-lg border border-border bg-card/30 w-full min-w-0">
-                            <h3 className="font-medium mb-2 text-sm md:text-base">Pricing Cards Component</h3>
-                            <p className="text-xs md:text-sm text-muted-foreground mb-3 leading-relaxed">
-                              Beautiful pricing cards with premium styling
-                            </p>
-                            <CodeBlock language="bash" elementKey="install-pricing">
-                              {`npx @ajstudioz14151/pricing-component@1.2.0 add`}
-                            </CodeBlock>
-                          </div>
+                        <div className="p-6 rounded-lg border border-border bg-card/30">
+                          <h3 className="font-medium mb-3">Pricing Cards Component</h3>
+                          <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
+                            Beautiful pricing cards with premium styling
+                          </p>
+                          <CodeBlock language="bash" elementKey="install-pricing">
+                            {`npx @ajstudioz14151/pricing-component@1.2.0 add`}
+                          </CodeBlock>
                         </div>
                       </div>
+                    </div>
 
-                      <div>
-                        <h2 className="text-xl font-semibold mb-4">Step 2: Installation Process</h2>
-                        <p className="text-muted-foreground mb-4">
-                          Our CLI automatically detects your project type and handles dependencies:
-                        </p>
-                        
-                        <div className="space-y-4">
-                          <div className="flex items-start gap-3">
-                            <div className="h-6 w-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center font-medium">1</div>
-                            <div>
-                              <h4 className="font-medium">Project Detection</h4>
-                              <p className="text-sm text-muted-foreground">Automatically detects Next.js or React/Vite setup</p>
-                            </div>
+                    <div>
+                      <h2 className="text-2xl font-semibold mb-6">Step 2: Installation Process</h2>
+                      <p className="text-muted-foreground mb-6">
+                        Our CLI automatically detects your project type and handles dependencies:
+                      </p>
+                      
+                      <div className="space-y-4">
+                        <div className="flex items-start gap-4">
+                          <div className="w-8 h-8 rounded-full bg-blue-600 text-white text-sm flex items-center justify-center font-medium flex-shrink-0">1</div>
+                          <div>
+                            <h4 className="font-medium mb-1">Project Detection</h4>
+                            <p className="text-sm text-muted-foreground">Automatically detects Next.js or React/Vite setup</p>
                           </div>
-                          <div className="flex items-start gap-3">
-                            <div className="h-6 w-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center font-medium">2</div>
-                            <div>
-                              <h4 className="font-medium">Dependencies</h4>
-                              <p className="text-sm text-muted-foreground">Installs required packages and components</p>
-                            </div>
+                        </div>
+                        <div className="flex items-start gap-4">
+                          <div className="w-8 h-8 rounded-full bg-blue-600 text-white text-sm flex items-center justify-center font-medium flex-shrink-0">2</div>
+                          <div>
+                            <h4 className="font-medium mb-1">Dependencies</h4>
+                            <p className="text-sm text-muted-foreground">Installs required packages and components</p>
                           </div>
-                          <div className="flex items-start gap-3">
-                            <div className="h-6 w-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center font-medium">3</div>
-                            <div>
-                              <h4 className="font-medium">Configuration</h4>
-                              <p className="text-sm text-muted-foreground">Sets up necessary configuration files</p>
-                            </div>
+                        </div>
+                        <div className="flex items-start gap-4">
+                          <div className="w-8 h-8 rounded-full bg-blue-600 text-white text-sm flex items-center justify-center font-medium flex-shrink-0">3</div>
+                          <div>
+                            <h4 className="font-medium mb-1">Configuration</h4>
+                            <p className="text-sm text-muted-foreground">Sets up necessary configuration files</p>
                           </div>
                         </div>
                       </div>
@@ -294,48 +389,39 @@ npx @ajstudioz14151/pricing-component@1.2.0 add`}
                 )}
 
                 {/* Code Blocks Section */}
-                {activeSection === "codeblocks" && (
-                  <div className="space-y-6 md:space-y-8 w-full min-w-0">
+                {activeSection === 'codeblocks' && (
+                  <div className="space-y-8">
                     <div>
-                      <div className="flex items-center gap-2 md:gap-3 mb-4 w-full overflow-hidden">
-                        <div className="h-8 w-8 md:h-10 md:w-10 flex items-center justify-center flex-shrink-0">
-                          <Image src="/AJ.svg" alt="AJ STUDIOZ" width={32} height={32} className="w-8 h-8 md:w-10 md:h-10" />
-                        </div>
-                        <h1 className="text-lg md:text-2xl lg:text-3xl font-bold truncate">Code Blocks Component</h1>
+                      <div className="flex items-center gap-3 mb-6">
+                        <img src="/AJ.svg" alt="AJ STUDIOZ" className="w-10 h-10" />
+                        <h1 className="text-3xl font-bold">Code Blocks Component</h1>
                       </div>
-                      <p className="text-muted-foreground mb-6">
+                      <p className="text-lg text-muted-foreground leading-relaxed">
                         Syntax-highlighted code blocks with copy functionality and theme support.
                       </p>
-                      {/* Inline Navigation */}
-                      <div className="flex items-center gap-2 mb-6">
-                        <Badge variant="default">Usage</Badge>
-                        <Badge variant="outline" className="cursor-pointer hover:bg-muted">Preview</Badge>
-                        <Badge variant="outline" className="cursor-pointer hover:bg-muted">Reference</Badge>
-                      </div>
                     </div>
 
-                    <div className="space-y-6">
-                      <div>
-                        <h2 className="text-xl font-semibold mb-4">Installation</h2>
-                        <CodeBlock language="bash" elementKey="codeblock-install">
-                          {`npx @ajstudioz14151/codeblocks-component@1.1.0 add`}
-                        </CodeBlock>
-                      </div>
+                    <div>
+                      <h2 className="text-2xl font-semibold mb-4">Installation</h2>
+                      <CodeBlock language="bash" elementKey="codeblock-install">
+                        {`npx @ajstudioz14151/codeblocks-component@1.1.0 add`}
+                      </CodeBlock>
+                    </div>
 
-                      <div>
-                        <h2 className="text-xl font-semibold mb-4">Usage</h2>
-                        <CodeBlock language="tsx" elementKey="codeblock-usage">
-                          {codeBlockUsage}
-                        </CodeBlock>
-                      </div>
+                    <div>
+                      <h2 className="text-2xl font-semibold mb-4">Usage</h2>
+                      <CodeBlock language="tsx" elementKey="codeblock-usage">
+                        {codeBlockUsage}
+                      </CodeBlock>
+                    </div>
 
-                      <div>
-                        <h2 className="text-xl font-semibold mb-4">Live Preview</h2>
-                        <div className="space-y-4">
-                          <div>
-                            <h3 className="text-lg font-medium mb-3">JavaScript Example</h3>
-                            <CodeBlock language="javascript" elementKey="js-example">
-                              {`function greetUser(name) {
+                    <div>
+                      <h2 className="text-2xl font-semibold mb-6">Live Examples</h2>
+                      <div className="space-y-6">
+                        <div>
+                          <h3 className="text-lg font-medium mb-3">JavaScript Example</h3>
+                          <CodeBlock language="javascript" elementKey="js-example">
+                            {`function greetUser(name) {
   const greeting = \`Hello, \${name}!\`;
   console.log(greeting);
   return greeting;
@@ -343,13 +429,13 @@ npx @ajstudioz14151/pricing-component@1.2.0 add`}
 
 // Usage
 const message = greetUser("Developer");`}
-                            </CodeBlock>
-                          </div>
+                          </CodeBlock>
+                        </div>
 
-                          <div>
-                            <h3 className="text-lg font-medium mb-3">Python Example</h3>
-                            <CodeBlock language="python" elementKey="python-example">
-                              {`def calculate_fibonacci(n):
+                        <div>
+                          <h3 className="text-lg font-medium mb-3">Python Example</h3>
+                          <CodeBlock language="python" elementKey="python-example">
+                            {`def calculate_fibonacci(n):
     """Calculate fibonacci sequence up to n terms."""
     if n <= 0:
         return []
@@ -365,8 +451,7 @@ const message = greetUser("Developer");`}
 # Generate first 10 fibonacci numbers
 result = calculate_fibonacci(10)
 print(f"Fibonacci sequence: {result}")`}
-                            </CodeBlock>
-                          </div>
+                          </CodeBlock>
                         </div>
                       </div>
                     </div>
@@ -374,153 +459,66 @@ print(f"Fibonacci sequence: {result}")`}
                 )}
 
                 {/* Pricing Section */}
-                {activeSection === "pricing" && (
-                  <div className="space-y-6 md:space-y-8 w-full min-w-0">
+                {activeSection === 'pricing' && (
+                  <div className="space-y-8">
                     <div>
-                      <div className="flex items-center gap-2 md:gap-3 mb-4 w-full overflow-hidden">
-                        <div className="h-8 w-8 md:h-10 md:w-10 flex items-center justify-center flex-shrink-0">
-                          <Image src="/AJ.svg" alt="AJ STUDIOZ" width={32} height={32} className="w-8 h-8 md:w-10 md:h-10" />
-                        </div>
-                        <h1 className="text-lg md:text-2xl lg:text-3xl font-bold truncate">Pricing Cards Component</h1>
+                      <div className="flex items-center gap-3 mb-6">
+                        <img src="/AJ.svg" alt="AJ STUDIOZ" className="w-10 h-10" />
+                        <h1 className="text-3xl font-bold">Pricing Cards Component</h1>
                       </div>
-                      <p className="text-muted-foreground mb-6">
+                      <p className="text-lg text-muted-foreground leading-relaxed">
                         Beautiful pricing cards with premium styling and customizable plans.
                       </p>
-                      {/* Inline Navigation */}
-                      <div className="flex items-center gap-2 mb-6">
-                        <Badge variant="default">Usage</Badge>
-                        <Badge variant="outline" className="cursor-pointer hover:bg-muted">Preview</Badge>
-                        <Badge variant="outline" className="cursor-pointer hover:bg-muted">Reference</Badge>
-                      </div>
                     </div>
 
-                    <div className="space-y-6">
-                      <div>
-                        <h2 className="text-xl font-semibold mb-4">Installation</h2>
-                        <CodeBlock language="bash" elementKey="pricing-install">
-                          {`npx @ajstudioz14151/pricing-component@1.2.0 add`}
-                        </CodeBlock>
-                      </div>
-
-                      <div>
-                        <h2 className="text-xl font-semibold mb-4">Usage</h2>
-                        <CodeBlock language="tsx" elementKey="pricing-usage">
-                          {pricingUsage}
-                        </CodeBlock>
-                      </div>
-
-                      <div>
-                        <h2 className="text-xl font-semibold mb-4">Live Preview</h2>
-                        <div className="w-full space-y-3 md:space-y-0 md:grid md:grid-cols-1 lg:grid-cols-2 md:gap-3 lg:gap-6">
-                          {INDIVIDUAL_PLANS.slice(0, 2).map(plan => (
-                            <div key={plan.id} className="w-full min-w-0">
-                              <PricingCard plan={plan} isYearly={false} />
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                {/* Usage Section */}
-                {activeSection === "usage" && (
-                  <div className="space-y-6 md:space-y-8 w-full min-w-0">
                     <div>
-                      <div className="flex items-center gap-2 md:gap-3 mb-4 w-full overflow-hidden">
-                        <div className="h-8 w-8 md:h-10 md:w-10 flex items-center justify-center flex-shrink-0">
-                          <Image src="/AJ.svg" alt="AJ STUDIOZ" width={32} height={32} className="w-8 h-8 md:w-10 md:h-10" />
-                        </div>
-                        <h1 className="text-lg md:text-2xl lg:text-3xl font-bold truncate">Usage Guide</h1>
-                      </div>
-                      <p className="text-muted-foreground mb-6">
-                        Learn how to use AJ STUDIOZ components in your projects.
-                      </p>
+                      <h2 className="text-2xl font-semibold mb-4">Installation</h2>
+                      <CodeBlock language="bash" elementKey="pricing-install">
+                        {`npx @ajstudioz14151/pricing-component@1.2.0 add`}
+                      </CodeBlock>
                     </div>
 
-                    <div className="space-y-6">
-                      <div>
-                        <h2 className="text-xl font-semibold mb-4">Basic Usage</h2>
-                        <p className="text-muted-foreground mb-4">
-                          After installation, import and use components in your React applications:
-                        </p>
-                        
-                        <div className="space-y-4">
-                          <div>
-                            <h3 className="text-lg font-medium mb-3">Code Block Component</h3>
-                            <CodeBlock language="tsx" elementKey="usage-codeblock">
-                              {`import { CodeBlock } from '@/components/ui/code-block';
-import { Toaster } from '@/components/ui/toaster';
+                    <div>
+                      <h2 className="text-2xl font-semibold mb-4">Usage</h2>
+                      <CodeBlock language="tsx" elementKey="pricing-usage">
+                        {pricingUsage}
+                      </CodeBlock>
+                    </div>
 
-export default function MyPage() {
-  return (
-    <div>
-      <h2>API Documentation</h2>
-      <CodeBlock language="javascript" elementKey="api-example">
-        {\`const response = await fetch('/api/data');
-const data = await response.json();
-console.log(data);\`}
-      </CodeBlock>
-      <Toaster />
-    </div>
-  );
-}`}
-                            </CodeBlock>
+                    <div>
+                      <h2 className="text-2xl font-semibold mb-6">Live Preview</h2>
+                      <div className="space-y-6 md:space-y-0 md:grid md:grid-cols-2 md:gap-6">
+                        {INDIVIDUAL_PLANS.slice(0, 2).map(plan => (
+                          <div key={plan.id}>
+                            <PricingCard plan={plan} isYearly={false} />
                           </div>
-
-                          <div>
-                            <h3 className="text-lg font-medium mb-3">Pricing Card Component</h3>
-                            <CodeBlock language="tsx" elementKey="usage-pricing">
-                              {`import PricingCard from '@/components/pricing/pricing-card';
-
-const myPlan = {
-  id: 'custom',
-  name: 'Custom Plan',
-  price: '$99',
-  period: '/month',
-  features: ['Feature 1', 'Feature 2', 'Feature 3'],
-  popular: false
-};
-
-export default function PricingPage() {
-  return (
-    <div className="container mx-auto p-8">
-      <PricingCard plan={myPlan} isYearly={false} />
-    </div>
-  );
-}`}
-                            </CodeBlock>
-                          </div>
-                        </div>
+                        ))}
                       </div>
                     </div>
                   </div>
                 )}
 
                 {/* Examples Section */}
-                {activeSection === "examples" && (
-                  <div className="space-y-6 md:space-y-8 w-full min-w-0">
+                {activeSection === 'examples' && (
+                  <div className="space-y-8">
                     <div>
-                      <div className="flex items-center gap-2 md:gap-3 mb-4 w-full overflow-hidden">
-                        <div className="h-8 w-8 md:h-10 md:w-10 flex items-center justify-center flex-shrink-0">
-                          <Image src="/AJ.svg" alt="AJ STUDIOZ" width={32} height={32} className="w-8 h-8 md:w-10 md:h-10" />
-                        </div>
-                        <h1 className="text-lg md:text-2xl lg:text-3xl font-bold truncate">Examples</h1>
+                      <div className="flex items-center gap-3 mb-6">
+                        <img src="/AJ.svg" alt="AJ STUDIOZ" className="w-10 h-10" />
+                        <h1 className="text-3xl font-bold">Examples</h1>
                       </div>
-                      <p className="text-muted-foreground mb-6">
-                        Real-world examples of using AJ STUDIOZ components.
+                      <p className="text-lg text-muted-foreground leading-relaxed">
+                        Real-world examples of using AJ STUDIOZ components in your projects.
                       </p>
                     </div>
 
-                    <div className="space-y-6">
-                      <div>
-                        <h2 className="text-xl font-semibold mb-4">Documentation Page</h2>
-                        <p className="text-muted-foreground mb-4">
-                          This documentation page itself is built using AJ STUDIOZ components:
-                        </p>
-                        
-                        <CodeBlock language="tsx" elementKey="doc-example">
-                          {`// This page uses both CodeBlock and PricingCard components
+                    <div>
+                      <h2 className="text-2xl font-semibold mb-4">Documentation Page</h2>
+                      <p className="text-muted-foreground mb-6">
+                        This documentation page itself is built using AJ STUDIOZ components:
+                      </p>
+                      
+                      <CodeBlock language="tsx" elementKey="doc-example">
+                        {`// This page uses both CodeBlock and PricingCard components
 import { CodeBlock } from '@/components/ui/code-block';
 import PricingCard from '@/components/pricing/pricing-card';
 
@@ -541,13 +539,13 @@ export default function DocumentationPage() {
     </div>
   );
 }`}
-                        </CodeBlock>
-                      </div>
+                      </CodeBlock>
+                    </div>
 
-                      <div>
-                        <h2 className="text-xl font-semibold mb-4">API Reference Page</h2>
-                        <CodeBlock language="tsx" elementKey="api-ref-example">
-                          {`// Perfect for API documentation
+                    <div>
+                      <h2 className="text-2xl font-semibold mb-4">API Reference Page</h2>
+                      <CodeBlock language="tsx" elementKey="api-ref-example">
+                        {`// Perfect for API documentation
 export default function APIReference() {
   return (
     <div className="max-w-4xl mx-auto p-8">
@@ -574,237 +572,17 @@ const users = await response.json();
     </div>
   );
 }`}
-                        </CodeBlock>
-                      </div>
+                      </CodeBlock>
                     </div>
                   </div>
                 )}
               </div>
-            </ScrollArea>
-          </div>
-
-          {/* In-Page Navigation - Right Sidebar */}
-          <div className="hidden lg:block w-80 bg-background flex-shrink-0">
-            <ScrollArea className="h-full">
-              <div className="p-6">
-                {/* Overview Page Navigation */}
-                {activeSection === "overview" && (
-                  <div className="space-y-4">
-                    <h3 className="text-sm font-semibold mb-4">On this page</h3>
-                    <nav className="space-y-1">
-                      <div className="flex items-center gap-2 py-1 text-primary">
-                        <Home className="h-4 w-4" />
-                        <div className="text-sm font-medium">Overview</div>
-                      </div>
-                      <div className="flex items-center gap-2 py-1 text-muted-foreground hover:text-foreground transition-colors cursor-pointer">
-                        <Zap className="h-4 w-4" />
-                        <div className="text-sm">Quick Start</div>
-                      </div>
-                      <div className="flex items-center gap-2 py-1 text-muted-foreground hover:text-foreground transition-colors cursor-pointer">
-                        <Download className="h-4 w-4" />
-                        <div className="text-sm">Installation</div>
-                      </div>
-                      <div className="flex items-center gap-2 py-1 text-muted-foreground hover:text-foreground transition-colors cursor-pointer">
-                        <Settings className="h-4 w-4" />
-                        <div className="text-sm">Features</div>
-                      </div>
-                    </nav>
-                  </div>
-                )}
-
-                {/* Installation Page Navigation */}
-                {activeSection === "installation" && (
-                  <div className="space-y-4">
-                    <h3 className="text-sm font-semibold mb-4">On this page</h3>
-                    <nav className="space-y-1">
-                      <div className="flex items-center gap-2 py-1 text-primary">
-                        <Package className="h-4 w-4" />
-                        <div className="text-sm font-medium">Choose package</div>
-                      </div>
-                      <div className="flex items-center gap-2 py-1 text-muted-foreground hover:text-foreground transition-colors cursor-pointer">
-                        <Code className="h-4 w-4" />
-                        <div className="text-sm">Code Blocks</div>
-                      </div>
-                      <div className="flex items-center gap-2 py-1 text-muted-foreground hover:text-foreground transition-colors cursor-pointer">
-                        <Package className="h-4 w-4" />
-                        <div className="text-sm">Pricing Cards</div>
-                      </div>
-                      <div className="flex items-center gap-2 py-1 text-primary">
-                        <Terminal className="h-4 w-4" />
-                        <div className="text-sm font-medium">Run NPX command</div>
-                      </div>
-                      <div className="flex items-center gap-2 py-1 text-muted-foreground hover:text-foreground transition-colors cursor-pointer">
-                        <Zap className="h-4 w-4" />
-                        <div className="text-sm">Auto Detection</div>
-                      </div>
-                      <div className="flex items-center gap-2 py-1 text-muted-foreground hover:text-foreground transition-colors cursor-pointer">
-                        <Settings className="h-4 w-4" />
-                        <div className="text-sm">Dependencies</div>
-                      </div>
-                      <div className="flex items-center gap-2 py-1 text-primary">
-                        <Check className="h-4 w-4" />
-                        <div className="text-sm font-medium">Verify installation</div>
-                      </div>
-                    </nav>
-                  </div>
-                )}
-
-                {/* Code Blocks Page Navigation */}
-                {activeSection === "codeblocks" && (
-                  <div className="space-y-4">
-                    <h3 className="text-sm font-semibold mb-4">On this page</h3>
-                    <nav className="space-y-1">
-                      <div className="flex items-center gap-2 py-1 text-primary">
-                        <Download className="h-4 w-4" />
-                        <div className="text-sm font-medium">Install component</div>
-                      </div>
-                      <div className="flex items-center gap-2 py-1 text-muted-foreground hover:text-foreground transition-colors cursor-pointer">
-                        <Terminal className="h-4 w-4" />
-                        <div className="text-sm">NPX installation</div>
-                      </div>
-                      <div className="flex items-center gap-2 py-1 text-primary">
-                        <Code className="h-4 w-4" />
-                        <div className="text-sm font-medium">Basic usage</div>
-                      </div>
-                      <div className="flex items-center gap-2 py-1 text-muted-foreground hover:text-foreground transition-colors cursor-pointer">
-                        <FileText className="h-4 w-4" />
-                        <div className="text-sm">Import component</div>
-                      </div>
-                      <div className="flex items-center gap-2 py-1 text-muted-foreground hover:text-foreground transition-colors cursor-pointer">
-                        <Package className="h-4 w-4" />
-                        <div className="text-sm">Add to page</div>
-                      </div>
-                      <div className="flex items-center gap-2 py-1 text-primary">
-                        <Zap className="h-4 w-4" />
-                        <div className="text-sm font-medium">Live preview</div>
-                      </div>
-                      <div className="flex items-center gap-2 py-1 text-muted-foreground hover:text-foreground transition-colors cursor-pointer">
-                        <Code className="h-4 w-4" />
-                        <div className="text-sm">JavaScript example</div>
-                      </div>
-                      <div className="flex items-center gap-2 py-1 text-muted-foreground hover:text-foreground transition-colors cursor-pointer">
-                        <Code className="h-4 w-4" />
-                        <div className="text-sm">Python example</div>
-                      </div>
-                    </nav>
-                  </div>
-                )}
-
-                {/* Pricing Page Navigation */}
-                {activeSection === "pricing" && (
-                  <div className="space-y-4">
-                    <h3 className="text-sm font-semibold mb-4">On this page</h3>
-                    <nav className="space-y-1">
-                      <div className="flex items-center gap-2 py-1 text-primary">
-                        <Download className="h-4 w-4" />
-                        <div className="text-sm font-medium">Install component</div>
-                      </div>
-                      <div className="flex items-center gap-2 py-1 text-muted-foreground hover:text-foreground transition-colors cursor-pointer">
-                        <Terminal className="h-4 w-4" />
-                        <div className="text-sm">NPX installation</div>
-                      </div>
-                      <div className="flex items-center gap-2 py-1 text-primary">
-                        <Code className="h-4 w-4" />
-                        <div className="text-sm font-medium">Basic usage</div>
-                      </div>
-                      <div className="flex items-center gap-2 py-1 text-muted-foreground hover:text-foreground transition-colors cursor-pointer">
-                        <FileText className="h-4 w-4" />
-                        <div className="text-sm">Import component</div>
-                      </div>
-                      <div className="flex items-center gap-2 py-1 text-muted-foreground hover:text-foreground transition-colors cursor-pointer">
-                        <Settings className="h-4 w-4" />
-                        <div className="text-sm">Set up plans</div>
-                      </div>
-                      <div className="flex items-center gap-2 py-1 text-primary">
-                        <Zap className="h-4 w-4" />
-                        <div className="text-sm font-medium">Live preview</div>
-                      </div>
-                      <div className="flex items-center gap-2 py-1 text-muted-foreground hover:text-foreground transition-colors cursor-pointer">
-                        <Package className="h-4 w-4" />
-                        <div className="text-sm">Individual plan</div>
-                      </div>
-                      <div className="flex items-center gap-2 py-1 text-muted-foreground hover:text-foreground transition-colors cursor-pointer">
-                        <Package className="h-4 w-4" />
-                        <div className="text-sm">Pro plan</div>
-                      </div>
-                    </nav>
-                  </div>
-                )}
-
-                {/* Usage Page Navigation */}
-                {activeSection === "usage" && (
-                  <div className="space-y-4">
-                    <h3 className="text-sm font-semibold mb-4">On this page</h3>
-                    <nav className="space-y-1">
-                      <div className="flex items-center gap-2 py-1 text-primary">
-                        <FileText className="h-4 w-4" />
-                        <div className="text-sm font-medium">Basic Usage</div>
-                      </div>
-                      <div className="flex items-center gap-2 py-1 text-muted-foreground hover:text-foreground transition-colors cursor-pointer">
-                        <Code className="h-4 w-4" />
-                        <div className="text-sm">Code Block Component</div>
-                      </div>
-                      <div className="flex items-center gap-2 py-1 text-muted-foreground hover:text-foreground transition-colors cursor-pointer">
-                        <Package className="h-4 w-4" />
-                        <div className="text-sm">Pricing Card Component</div>
-                      </div>
-                    </nav>
-                  </div>
-                )}
-
-                {/* Examples Page Navigation */}
-                {activeSection === "examples" && (
-                  <div className="space-y-4">
-                    <h3 className="text-sm font-semibold mb-4">On this page</h3>
-                    <nav className="space-y-1">
-                      <div className="flex items-center gap-2 py-1 text-primary">
-                        <FileText className="h-4 w-4" />
-                        <div className="text-sm font-medium">Documentation page</div>
-                      </div>
-                      <div className="flex items-center gap-2 py-1 text-muted-foreground hover:text-foreground transition-colors cursor-pointer">
-                        <Code className="h-4 w-4" />
-                        <div className="text-sm">Basic structure</div>
-                      </div>
-                      <div className="flex items-center gap-2 py-1 text-muted-foreground hover:text-foreground transition-colors cursor-pointer">
-                        <Zap className="h-4 w-4" />
-                        <div className="text-sm">API examples</div>
-                      </div>
-                      <div className="flex items-center gap-2 py-1 text-primary">
-                        <Settings className="h-4 w-4" />
-                        <div className="text-sm font-medium">API Reference page</div>
-                      </div>
-                      <div className="flex items-center gap-2 py-1 text-muted-foreground hover:text-foreground transition-colors cursor-pointer">
-                        <Package className="h-4 w-4" />
-                        <div className="text-sm">Custom integration</div>
-                      </div>
-                      <div className="flex items-center gap-2 py-1 text-muted-foreground hover:text-foreground transition-colors cursor-pointer">
-                        <Book className="h-4 w-4" />
-                        <div className="text-sm">Multi-language support</div>
-                      </div>
-                    </nav>
-                  </div>
-                )}
-
-                {/* Quick Actions */}
-                <div className="mt-8 pt-6 border-t border-border">
-                  <div className="space-y-3">
-                    <button className="w-full flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
-                      <Copy className="h-3 w-3" />
-                      Copy page URL
-                    </button>
-                    <button className="w-full flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
-                      <ExternalLink className="h-3 w-3" />
-                      Share feedback
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </ScrollArea>
+            </div>
           </div>
         </div>
       </div>
 
       <Toaster />
-    </div>
+    </main>
   );
 }
